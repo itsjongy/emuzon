@@ -38,3 +38,22 @@ class Order(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }
+
+    def to_dict_single(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'items': self.items,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'zipCode': self.zipCode,
+            'credit_card': self.credit_card,
+            'expiration_date': self.expiration_date,
+            'cvc': self.cvc,
+            'order_first': self.order_first,
+            'order_last': self.order_last,
+            'user_meta': {'first_name': self.users.first_name, 'last_name': self.users.last_name},
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }
