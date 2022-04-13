@@ -9,7 +9,7 @@ def seed_cart_items():
     db.session.add(cart1)
     db.session.add(cart2)
 
-    db.sessions.commit()
+    db.session.commit()
 
 def undo_cart_items():
     db.session.execute('TRUNCATE cart_items RESTART IDENTITY CASCADE;')

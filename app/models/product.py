@@ -21,8 +21,8 @@ class Product(db.Model):
             'name': self.name,
             'description': self.description,
             'price': str(self.price),
-            'product_url': self.product_url,
-            'department': self.department,
+            'product_img': self.product_img,
+            'category': self.category,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
         }

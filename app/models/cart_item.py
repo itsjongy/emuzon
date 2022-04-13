@@ -3,7 +3,6 @@ from .db import db
 class Cart_item(db.Model):
     __tablename__ = "cart_items"
 
-    id = db.Column(db.Integer, primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False, default=0)

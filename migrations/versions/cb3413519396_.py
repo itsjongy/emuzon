@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 4b4eb6432026
+Revision ID: cb3413519396
 Revises: 
-Create Date: 2022-04-13 16:50:02.250384
+Create Date: 2022-04-13 17:40:42.198124
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '4b4eb6432026'
+revision = 'cb3413519396'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,7 +41,6 @@ def upgrade():
     sa.UniqueConstraint('email')
     )
     op.create_table('cart_items',
-    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('quantity', sa.Integer(), nullable=False),
@@ -49,7 +48,7 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id', 'product_id', 'user_id')
+    sa.PrimaryKeyConstraint('product_id', 'user_id')
     )
     op.create_table('orders',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -70,7 +69,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('reviews',
-    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('headline', sa.String(length=100), nullable=False),
@@ -80,7 +78,7 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id', 'user_id', 'product_id')
+    sa.PrimaryKeyConstraint('user_id', 'product_id')
     )
     # ### end Alembic commands ###
 
