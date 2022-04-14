@@ -17,10 +17,20 @@ def get_product(id):
     return product.to_dict_single()
 
 
+@product_routes.route('/<int:id>/reviews')
+def get_reviews(id):
+    reviews = Review.query.filter(Review.product_id == id).order_by(Review.updated_at.desc()).all()
+    reviewList = []
+    for review in reviews:
+        reviewList.append(review.to_dict())
+    return jsonify(reviewList)
+
+# create/delete not working
 @product_routes.route('/<int:id>/reviews/new', methods=['POST'])
 def add_Review():
+    print("------------------")
     review = dict(request.json)
-
+    print('++++++++review', review)
     newReview = Review(
         user_id=review['user_id'],
         product_id=review['product_id'],
@@ -28,18 +38,10 @@ def add_Review():
         body=review['body'],
         rating=review['rating'],
     )
+    print('++++++++++++++++++newReview', newReview)
     db.session.add(newReview)
     db.session.commit()
     return newReview.to_dict()
-
-
-@product_routes.route('/<int:id>/reviews')
-def get_reviews(id):
-    reviews = Review.query.filter(Review.product_id == id).order_by(Review.updated_at.desc(all)).all()
-    reviewList = []
-    for review in reviews:
-        reviewList.append(review.to_dict())
-    return jsonify(reviewList)
 
 
 @product_routes.route('/<int:id>/reviews/<int:userId>/delete', methods=['DELETE'])

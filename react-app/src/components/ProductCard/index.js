@@ -1,16 +1,18 @@
-import { NavLink } from "react-router-dom"
+import React from 'react';
+import { Link } from "react-router-dom";
+import './style/ProductCard.css';
 
 const ProductCard = ({ product }) => {
     return (
-        <NavLink className='product-card-container' exact to={`products/${product?.id}`}>
+        <Link className='product-card-link' to={`/products/${product?.id}`}>
             <div>
-                <img className='product-image' src={product?.img} alt='product' />
-                <p className='product-card-name'>{product?.name}</p>
-                <p className='product-card-price'>{product?.price}</p>
+                <img className='product-image' src={product?.product_img} alt='product' />
+                <p className='product-card-name'>{product.name}</p>
+                <p className='product-card-price'>${product?.price}</p>
                 <div></div>
             </div>
-        </NavLink>
-    )
-}
+        </Link>
+    );
+};
 
 export default ProductCard;
