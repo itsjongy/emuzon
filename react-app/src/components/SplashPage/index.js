@@ -1,14 +1,14 @@
-import React from "react";
-import ProductsList from "./ProductList";
+// import React from "react";
+// import ProductsList from "./ProductList";
 
 
-const SplashPage = () => {
+// const SplashPage = () => {
 
-    return (
-        <div>
-            <ProductsList />
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <ProductsList />
+//         </div>
+//     )
+// }
 
-export default SplashPage;
+// export default SplashPage;

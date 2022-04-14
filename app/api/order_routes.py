@@ -17,7 +17,7 @@ def get_order(id):
     orders = Order.query.filter(Order.user_id == id).all()
     return {'user_orders': [order.to_dict() for order in orders]}
 
-@order_routes.route('/<int:id>/new/address/', methods=['POST','PATCH'])
+@order_routes.route('/<int:id>/new/address', methods=['POST','PATCH'])
 def newOrderAddress(id):
     existingOrder = Order.query.filter(Order.user_id == id).order_by(Order.id.desc()).first()
     if request.method == 'POST':
@@ -53,7 +53,7 @@ def newOrderAddress(id):
             return existingOrder.to_dict()
     return "Failed to add or edit address"
 
-@order_routes.route('/<int:id>/new/payment/', methods=['POST','PATCH'])
+@order_routes.route('/<int:id>/new/payment', methods=['POST','PATCH'])
 def newOrderPayment(id):
     existingOrder = Order.query.filter(Order.user_id == id).order_by(Order.id.desc()).first()
     if request.method == 'POST':
@@ -83,7 +83,7 @@ def newOrderPayment(id):
             return existingOrder.to_dict()
     return "Failed to add or edit payment"
 
-@order_routes.route('/<int:id>/new/', methods=['PATCH'])
+@order_routes.route('/<int:id>/new', methods=['PATCH'])
 def newOrder(id):
         existingOrder = Order.query.filter(Order.user_id == id).filter(Order.items == None).first()
         if existingOrder:
