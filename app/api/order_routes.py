@@ -16,7 +16,7 @@ def orders():
 def get_order(id):
     orders = Order.query.filter(Order.user_id == id).all()
     return {'user_orders': [order.to_dict_single() for order in orders]}
-    
+
 # below routes not working
 @order_routes.route('/<int:id>/new/address', methods=['POST','PATCH'])
 def newOrderAddress(id):

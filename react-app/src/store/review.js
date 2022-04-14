@@ -49,6 +49,11 @@ export const getReview = (id) => async (dispatch) => {
 };
 
 export const addReview = (product_id, user_id, headline, body, rating) => async (dispatch) => {
+    console.log("---------->", product_id)
+    console.log("---------->", user_id)
+    console.log("---------->", headline)
+    console.log("---------->", body)
+    console.log("---------->", rating)
     const response = await fetch(`/api/products/${product_id}/reviews/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

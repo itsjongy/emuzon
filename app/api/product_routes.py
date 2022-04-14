@@ -25,12 +25,10 @@ def get_reviews(id):
         reviewList.append(review.to_dict())
     return jsonify(reviewList)
 
-# create/delete not working
+# create/delete working maybe???
 @product_routes.route('/<int:id>/reviews/new', methods=['POST'])
-def add_Review():
-    print("------------------")
-    review = dict(request.json)
-    print('++++++++review', review)
+def add_Review(id):
+    review = request.json
     newReview = Review(
         user_id=review['user_id'],
         product_id=review['product_id'],
@@ -38,7 +36,6 @@ def add_Review():
         body=review['body'],
         rating=review['rating'],
     )
-    print('++++++++++++++++++newReview', newReview)
     db.session.add(newReview)
     db.session.commit()
     return newReview.to_dict()
@@ -46,9 +43,9 @@ def add_Review():
 
 @product_routes.route('/<int:id>/reviews/<int:userId>/delete', methods=['DELETE'])
 def deleteReview(id):
-    data = dict(request.json)
+    # data = dict(request.json)
     review = Review.query.get(id)
     res = {'id': id}
-    db.session.delete(comment)
+    db.session.delete(review)
     db.session.commit()
     return res
