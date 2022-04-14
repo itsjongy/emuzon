@@ -37,7 +37,7 @@ const LoginForm = () => {
 
   return (
     <div>
-      <img alt='amazan_logo' src='https://media.discordapp.net/attachments/402059564910116875/963926759575810068/amazanlogo.png?width=1920&height=580'></img>
+      <img className='login-logo' alt='amazan_logo' src='https://media.discordapp.net/attachments/402059564910116875/963926759575810068/amazanlogo.png?width=1920&height=580'></img>
       <div>
         <p>Sign-in</p>
         <form onSubmit={onLogin}>

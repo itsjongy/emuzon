@@ -13,10 +13,8 @@ const getOne = (product) => ({
 
 export const getProducts = () => async (dispatch) => {
     const response = await fetch(`/api/products`);
-    console.log("response+++++++++++++++++++++", response)
     if (response.ok) {
         const products = await response.json();
-        console.log('products------------', products)
         dispatch(load(products));
         return products;
     }
