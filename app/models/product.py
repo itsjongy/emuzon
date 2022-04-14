@@ -23,6 +23,29 @@ class Product(db.Model):
             'price': str(self.price),
             'product_img': self.product_img,
             'category': self.category,
+            'average_rating_total': int(sum([obj.rating for obj in self.users_reviews])),
+            'average_rating_length': len([obj.rating for obj in self.users_reviews]),
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+        }
+
+    def to_dict_single(self):
+        print([each for each in self.users_reviews])
+        return {
+            'id': self.id,
+            'name': self.name,
+            'description': self.description,
+            'price': str(self.price),
+            'product_url': self.product_url,
+            'department': self.department,
+            'average_rating_total': int(sum([obj.rating for obj in self.users_reviews])),
+            'average_rating_length': len([obj.rating for obj in self.users_reviews]),
+            'review': [{
+                'headline' : each.headline,
+                'user_id' : each.user_id,
+                'body': each.body,
+                'indivRating': each.rating,
+                'createdAt': each.created_at,
+                'updated_at': each.updated_at
+                } for each in self.users_reviews]
         }
