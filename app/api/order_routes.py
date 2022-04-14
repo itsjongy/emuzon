@@ -15,8 +15,9 @@ def orders():
 @order_routes.route('/<int:id>')
 def get_order(id):
     orders = Order.query.filter(Order.user_id == id).all()
-    return {'user_orders': [order.to_dict() for order in orders]}
-
+    return {'user_orders': [order.to_dict_single() for order in orders]}
+    
+# below routes not working
 @order_routes.route('/<int:id>/new/address', methods=['POST','PATCH'])
 def newOrderAddress(id):
     existingOrder = Order.query.filter(Order.user_id == id).order_by(Order.id.desc()).first()
@@ -29,9 +30,9 @@ def newOrderAddress(id):
                 address=form.data['address'],
                 city=form.data['city'],
                 state=form.data['state'],
-                zipCode=form.data['zipCode'],
-                first_name=form.data['first_name'],
-                last_name=form.data['last_name'],
+                zip_code=form.data['zip_code'],
+                order_first=form.data['order_first'],
+                order_last=form.data['order_last'],
             )
             db.session.add(order)
             db.session.commit()
@@ -45,9 +46,9 @@ def newOrderAddress(id):
                 address=form.data['address'],
                 city=form.data['city'],
                 state=form.data['state'],
-                zipCode=form.data['zipCode'],
-                first_name=form.data['first_name'],
-                last_name=form.data['last_name'],
+                zip_code=form.data['zip_code'],
+                order_first=form.data['order_first'],
+                order_last=form.data['order_last'],
             )
             db.session.commit()
             return existingOrder.to_dict()
@@ -108,7 +109,7 @@ def newOrder(id):
                             address=null.address,
                             city=null.city,
                             state=null.state,
-                            zipCode=null.zipCode,
+                            zip_code=null.zip_code,
                             order_first=null.order_first,
                             order_last=null.order_last,
                             items=form.data['items'],
