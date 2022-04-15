@@ -3,6 +3,7 @@ from .db import db
 class Cart_item(db.Model):
     __tablename__ = "cart_items"
 
+    id= db.Column(db.Integer, primary_key=True, autoincrement=True)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False, default=0)
@@ -15,6 +16,7 @@ class Cart_item(db.Model):
     def to_dict(self):
 
         return {
+            'id': self.id,
             'product_id': self.product_id,
             'product_info': self.product.to_dict(),
             'user_id': self.user_id,

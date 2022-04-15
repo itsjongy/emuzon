@@ -1,0 +1,79 @@
+.navbar-container-logged {
+    height: 60px;
+    width: 100%;
+    background-color: #131921;
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-logo {
+    max-height: 55px;
+}
+
+.navbar-deliver-to {
+    font-size: 14px;
+}
+
+.navbar-hello {
+    font-size: 14px;
+    margin-bottom: 0px;
+    color: white;
+}
+
+.navbar-account {
+    margin-top: 0px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar-orders {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar-cartnbadge {
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    max-height: 60px;
+}
+
+.navbar-cart-badge {
+    position: relative;
+    color: #f08804;
+    font-weight: bold;
+    text-align: center;
+}
+
+.navbar-cartntext {
+    display: flex;
+    margin-top: -15px;
+    margin-bottom: 0px;
+}
+
+.navbar-cart-logo {
+    height: 26px;
+}
+
+.navbar-carttext {
+    margin: 10px 0px 0px 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.navbar-container-notlogged {
+    height: 60px;
+    width: 100%;
+    background-color: #131921;
+    display: flex;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+}

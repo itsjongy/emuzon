@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage'
+import ProductPage from './components/ProductPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,6 +42,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <Route path="/products/:productId" exact={true}>
+          <ProductPage />
+        </Route>
         <Route path='/' exact={true} >
           <h1>hi</h1>
           {/* <SplashPage /> */}

@@ -8,7 +8,7 @@ class OrderForm(FlaskForm):
     address = StringField('address')
     city = StringField('city')
     state = StringField('state')
-    zipCode = StringField('zipCode')
+    zip_code = StringField('zip_code')
     credit_card = StringField('credit_card')
     expiration_date = StringField('expiration_date')
     cvc = StringField('cvc')

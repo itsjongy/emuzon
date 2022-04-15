@@ -17,10 +17,18 @@ def get_product(id):
     return product.to_dict_single()
 
 
-@product_routes.route('/<int:id>/reviews/new', methods=['POST'])
-def add_Review():
-    review = dict(request.json)
+@product_routes.route('/<int:id>/reviews')
+def get_reviews(id):
+    reviews = Review.query.filter(Review.product_id == id).order_by(Review.updated_at.desc()).all()
+    reviewList = []
+    for review in reviews:
+        reviewList.append(review.to_dict())
+    return jsonify(reviewList)
 
+# create/delete working maybe???
+@product_routes.route('/<int:id>/reviews/new', methods=['POST'])
+def add_Review(id):
+    review = request.json
     newReview = Review(
         user_id=review['user_id'],
         product_id=review['product_id'],
@@ -33,20 +41,11 @@ def add_Review():
     return newReview.to_dict()
 
 
-@product_routes.route('/<int:id>/reviews')
-def get_reviews(id):
-    reviews = Review.query.filter(Review.product_id == id).order_by(Review.updated_at.desc(all)).all()
-    reviewList = []
-    for review in reviews:
-        reviewList.append(review.to_dict())
-    return jsonify(reviewList)
-
-
 @product_routes.route('/<int:id>/reviews/<int:userId>/delete', methods=['DELETE'])
 def deleteReview(id):
-    data = dict(request.json)
+    # data = dict(request.json)
     review = Review.query.get(id)
     res = {'id': id}
-    db.session.delete(comment)
+    db.session.delete(review)
     db.session.commit()
     return res

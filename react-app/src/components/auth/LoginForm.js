@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import './style/LoginForm.css'
 
@@ -36,46 +36,54 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
-      <img alt='amazan_logo' src='https://media.discordapp.net/attachments/402059564910116875/963926759575810068/amazanlogo.png?width=1920&height=580'></img>
-      <div>
-        <p>Sign-in</p>
-        <form onSubmit={onLogin}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+    <div className='login-page'>
+      <div className='login-container'>
+        <Link to='/' exact='true'>
+          <img className='login-logo' alt='amazan_logo' src='https://media.discordapp.net/attachments/402059564910116875/963926759575810068/amazanlogo.png?width=1920&height=580'></img>
+        </Link>
+        <div className='login-form'>
+          <p className='login-signintext'>Sign-in</p>
+          <form onSubmit={onLogin}>
+            <div className='login-validators'>
+              {errors.map((error, ind) => (
+                <div key={ind}>{error}</div>
+              ))}
+            </div>
+            <div className='login-inputcontainer'>
+              <label className='login-text' htmlFor='email'>Email</label>
+              <input
+                className='login-inputbox'
+                name='email'
+                type='text'
+                placeholder='Email'
+                value={email}
+                onChange={updateEmail}
+              />
+            </div>
+            <div className='login-inputcontainer'>
+              <label className='login-text' htmlFor='password'>Password</label>
+              <input
+                className='login-inputbox'
+                name='password'
+                type='password'
+                placeholder='Password'
+                value={password}
+                onChange={updatePassword}
+              />
+              <button className='login-button login-buttonprimary' type='submit'>Sign-In</button>
+            </div>
+          </form>
+        </div>
+        <div className='login-tosignup'>
+          <div className='separator'>
+            New to Amazon?
           </div>
-          <div>
-            <label htmlFor='email'>Email</label>
-            <input
-              name='email'
-              type='text'
-              placeholder='Email'
-              value={email}
-              onChange={updateEmail}
-            />
+          <a className='login-createlink' href='/sign-up'>Create your Amazon account</a>
+          <div className='separator2'>
+            <p>Want to try the site?</p>
           </div>
-          <div>
-            <label htmlFor='password'>Password</label>
-            <input
-              name='password'
-              type='password'
-              placeholder='Password'
-              value={password}
-              onChange={updatePassword}
-            />
-            <button type='submit'>Sign-In</button>
-          </div>
-        </form>
-      </div>
-      <div className='login-tosignup'>
-        <p>New to Amazon?</p>
-        <a href='/sign-up'>Create your Amazon account</a>
-      </div>
-      <div className='login-tosignup'>
-        <p className="demo-login-text">Want to try the site?</p>
-        <p className="demo-login-text" onClick={demoLogin}>Demo Login</p>
+          <p className="demo-login-text" style={{ cursor: "pointer" }} onClick={demoLogin}>Demo Login</p>
+        </div>
       </div>
     </div>
   );
