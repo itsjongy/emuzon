@@ -8,11 +8,13 @@ import { getReview } from "../../store/review";
 const ProductPage = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
-    const product = useSelector(state => state.products)
+    const product = useSelector((state) => state.product)
     console.log("hehehehehehehe", product)
+
     // const review = useSelector(state => Object.values(state.review));
     // console.log('HEHEHEHEHEHEHE', review)
     // const user = useSelector(state => state.session.user);
+    // console.log("HOHOHOHOHOHO", user)
 
     useEffect(() => {
         (async () => {
@@ -40,7 +42,7 @@ const ProductPage = () => {
                 <Link to='/' exact='true'>
                     Home
                 </Link>
-                <p>{product?.[productId].category}</p>
+                <p>{product?.[productId]?.category}</p>
             </div>
             <div>
                 <div>

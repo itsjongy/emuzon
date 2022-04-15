@@ -38,7 +38,6 @@ const productReducer = (state = initialState, action) => {
         case GET_PRODUCTS:
             newState = {};
             action.products.forEach(product => newState[product.id] = product)
-            console.log("REDUCER ------>", newState)
             return newState;
         case GET_ONE:
             newState = {};
