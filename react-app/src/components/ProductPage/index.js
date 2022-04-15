@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getProducts } from "../../store/product";
-import { getReview } from "../../store/review";
+// import { getReview } from "../../store/review";
 
 
 const ProductPage = () => {
@@ -46,7 +46,7 @@ const ProductPage = () => {
             </div>
             <div>
                 <div>
-                    <img alt="productpage-image" className="productpage-image" src={`${product?.[productId]?.product_img}`}></img>
+                    <img alt="productpage-logo" className="productpage-image" src={`${product?.[productId]?.product_img}`}></img>
                 </div>
                 <div>
                     <p>{product?.[productId]?.name}</p>
