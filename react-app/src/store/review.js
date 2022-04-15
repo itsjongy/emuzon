@@ -103,7 +103,19 @@ const reviewReducer = (state = initialState, action) => {
             newState = {};
             newState[action.review.id] = action.review;
             return newState;
-
+        case ADD_ONE:
+            newState = {};
+            newState = { ...state, [action.review.user_id]: action.review }
+            return newState;
+        case DELETE_ONE:
+            newState = { ...state };
+            delete newState[action.review];
+            return newState;
+        case UPDATE_ONE:
+            newState = { ...state, [action.review.user_id]: action.review }
+            return newState;
+        default:
+            return state;
     }
 }
 

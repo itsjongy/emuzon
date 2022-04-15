@@ -15,13 +15,14 @@ export const getProducts = () => async (dispatch) => {
     const response = await fetch(`/api/products`);
     if (response.ok) {
         const products = await response.json();
-        dispatch(load(products));
-        return products;
+        const newProduct = products.products
+        dispatch(load(newProduct));
+        return newProduct;
     }
 }
 
-export const getProduct = (productId) => async (dispatch) => {
-    const response = await fetch(`/api/products/${productId}`);
+export const getProduct = (id) => async (dispatch) => {
+    const response = await fetch(`/api/products/${id}`);
     if (response.ok) {
         const product = await response.json();
         dispatch(getOne(product));
@@ -36,8 +37,8 @@ const productReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_PRODUCTS:
             newState = {};
-            action.products.forEach(product =>
-                newState[product.id] = product)
+            action.products.forEach(product => newState[product.id] = product)
+            console.log("REDUCER ------>", newState)
             return newState;
         case GET_ONE:
             newState = {};
