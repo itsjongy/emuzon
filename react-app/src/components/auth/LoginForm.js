@@ -82,7 +82,7 @@ const LoginForm = () => {
           <div className='separator2'>
             <p>Want to try the site?</p>
           </div>
-          <p className="demo-login-text" style={{ cursor: "pointer" }} onClick={demoLogin}>Demo Login</p>
+          <p className="demo-login-text" style={{ cursor: "pointer" }} onClick={demoLogin}>Demo login</p>
         </div>
       </div>
     </div>

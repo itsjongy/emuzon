@@ -1,30 +1,31 @@
-// import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getProducts } from "../../store/product";
-// import ProductCard from "../ProductCard";
-// import './style/index.css';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../store/product";
+import ProductCard from "../Product/ProductCard";
 
-// const SplashPage = () => {
-//     const [loaded, setLoaded] = useState(false);
-//     const dispatch = useDispatch();
-//     const products = useSelector(state => Object.values(state.products));
-//     console.log('--------------', products)
-//     useEffect(() => {
-//         (async () => {
-//             await dispatch(getProducts());
-//             setLoaded(true);
-//         })();
-//     }, [dispatch]);
+import './style/index.css';
 
-//     if (!loaded) {
-//         return null;
-//     };
+const SplashPage = () => {
+    const [loaded, setLoaded] = useState(false);
+    const dispatch = useDispatch();
+    const products = useSelector(state => Object.values(state.product));
+    console.log('--------------', products)
+    useEffect(() => {
+        (async () => {
+            await dispatch(getProducts());
+            setLoaded(true);
+        })();
+    }, [dispatch]);
 
-//     return (
-//         <div>
-//             <ProductCard />
-//         </div>
-//     )
-// }
+    if (!loaded) {
+        return null;
+    };
 
-// export default SplashPage;
+    return (
+        <div>
+            <ProductCard />
+        </div>
+    )
+}
+
+export default SplashPage;
