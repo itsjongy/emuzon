@@ -1,0 +1,35 @@
+.product-card-container {
+    width: 450px;
+    background-color: white;
+    margin: 0px 30px;
+    height: 350px;
+    max-height: 350px;
+}
+
+.product-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card-image {
+    padding: 20px 20px 0px 20px;
+    max-width: 500px;
+    height: 200px;
+}
+
+.product-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-self: end;
+    margin: 20px 20px 20px 20px;
+}
+
+.product-card-name {
+    margin: 0px 0px 15px 0px;
+}
+
+.product-card-price {
+    margin: 0px 0px 10px 0px;
+}
