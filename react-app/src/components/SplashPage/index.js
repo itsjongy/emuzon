@@ -9,7 +9,6 @@ const SplashPage = () => {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
     const products = useSelector(state => Object.values(state.product));
-    console.log('--------------', products)
 
     useEffect(() => {
         (async () => {
