@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addReview } from "../../../store/review";
-import '../ReviewModal.css'
+import '../style/ReviewModal.css'
 
 const CreateReview = ({ productId, user, setShowModal }) => {
     const [errors, setErrors] = useState([]);

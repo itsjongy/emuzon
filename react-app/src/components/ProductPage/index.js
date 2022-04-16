@@ -11,8 +11,8 @@ const ProductPage = () => {
     const product = useSelector((state) => state.product)
     console.log("hehehehehehehe", product)
 
-    // const review = useSelector(state => Object.values(state.review));
-    // console.log('HEHEHEHEHEHEHE', review)
+    const review = useSelector(state => state.review);
+    console.log('HEHEHEHEHEHEHE', review)
     // const user = useSelector(state => state.session.user);
     // console.log("HOHOHOHOHOHO", user)
 
@@ -23,10 +23,10 @@ const ProductPage = () => {
         })();
     }, [dispatch, productId]);
 
-    // const avgRating =
-    //     review?.reduce(function (sum, value) {
-    //         return sum + value.rating;
-    //     }, 0) / review?.length;
+    const avgRating =
+        review?.reduce(function (sum, value) {
+            return sum + value.rating;
+        }, 0) / review?.length;
 
     const currentDate = () => {
         let currentDay = new Date();
@@ -52,7 +52,7 @@ const ProductPage = () => {
                     <p>{product?.[productId]?.name}</p>
                     <div>
                         <div>
-                            {/* <div>
+                            <div>
                                 {Array(5)
                                     .fill()
                                     .map((_, i) => {
@@ -65,7 +65,7 @@ const ProductPage = () => {
                                         );
                                     })};
                             </div>
-                            <p>{review.length} ratings</p> */}
+                            <p>{review.length} ratings</p>
                         </div>
                         <div>
                             <p>Price: {`$${product?.[productId]?.price}`}</p>

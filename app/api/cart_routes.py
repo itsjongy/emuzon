@@ -11,7 +11,7 @@ def get_cart(id):
     return {'Cart_item': [cart.to_dict() for cart in carts]}
 
 
-@cart_routes.route('/<int:id>/cart/<int:id>', methods=["POST"])
+@cart_routes.route('/<int:userId>/cart/<int:id>', methods=["POST"])
 def add_cart_item(userId, id):
     cart = Cart_item.query.filter(Cart_item.product_id == id, Cart_item.user_id == userId).first()
     if not cart:
