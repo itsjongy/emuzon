@@ -2,31 +2,26 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getProducts } from "../../store/product";
-// import { getReview } from "../../store/review";
+import { getReview } from "../../store/review";
+import Reviews from "../Review";
+import CreateReviewModal from "../Review/CreateReviewModal/CReviewModal";
+import ReviewDetail from "../ReviewDetails";
 
 
 const ProductPage = () => {
     const dispatch = useDispatch();
     const { productId } = useParams();
-    const product = useSelector((state) => state.product)
-    console.log("hehehehehehehe", product)
-
-    const review = useSelector(state => state.review);
-    console.log('HEHEHEHEHEHEHE', review)
-    // const user = useSelector(state => state.session.user);
-    // console.log("HOHOHOHOHOHO", user)
+    const product = useSelector(state => state.product)
+    const review = useSelector(state => Object.values(state.review));
+    console.log("reviews ---->", review[0])
+    const user = useSelector(state => state.session.user);
 
     useEffect(() => {
         (async () => {
             await dispatch(getProducts());
-            // await dispatch(getReview(productId));
+            await dispatch(getReview(productId));
         })();
     }, [dispatch, productId]);
-
-    const avgRating =
-        review?.reduce(function (sum, value) {
-            return sum + value.rating;
-        }, 0) / review?.length;
 
     const currentDate = () => {
         let currentDay = new Date();
@@ -35,6 +30,14 @@ const ProductPage = () => {
         currentDay.setDate(currentDay.getDate() + 2);
         return currentDay.toLocaleDateString("en-US", options);
     }
+
+    const avgRating =
+        review[0]?.reduce(function (sum, value) {
+            return sum + value.rating;
+        }, 0) / review[0]?.length;
+
+    const userReview = review[0]?.some((review) => review.user_id === user?.id);
+    console.log("00000000", userReview)
 
     return (
         <div>
@@ -52,7 +55,7 @@ const ProductPage = () => {
                     <p>{product?.[productId]?.name}</p>
                     <div>
                         <div>
-                            <div>
+                            {/* <div>
                                 {Array(5)
                                     .fill()
                                     .map((_, i) => {
@@ -64,8 +67,8 @@ const ProductPage = () => {
                                             </p>
                                         );
                                     })};
-                            </div>
-                            <p>{review.length} ratings</p>
+                            </div> */}
+                            <p>{review[0]?.length} ratings</p>
                         </div>
                         <div>
                             <p>Price: {`$${product?.[productId]?.price}`}</p>
@@ -90,7 +93,26 @@ const ProductPage = () => {
             </div>
             <div>
                 <div>
-                    {/* Review div */}
+                    <ReviewDetail review={review} averageRating={avgRating} />
+                    {user ? [
+                        userReview ? null : (
+                            <CreateReviewModal
+                                key={user.id}
+                                productId={productId}
+                                user={user}
+                            />
+                        ),
+                    ]
+                        : null}
+                </div>
+                <div>
+                    {review[0]?.filter((ele) => ele.user_id === user?.id).concat(review.filter(reviewfilter => reviewfilter.user_id !== user?.id)).map((userreview) => (
+                        <Reviews
+                            currentUserReview={userreview.user_id === user?.id}
+                            key={userreview.user_id}
+                            reviewInfo={userreview}
+                        />
+                    ))}
                 </div>
             </div>
         </div>

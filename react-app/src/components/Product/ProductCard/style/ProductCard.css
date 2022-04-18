@@ -1,9 +1,11 @@
 .product-card-container {
     width: 450px;
     background-color: white;
+    border: 1px solid #a1a1a1;
     margin: 0px 30px;
     height: 350px;
     max-height: 350px;
+    margin-bottom: 20px;
 }
 
 .product-image-container {
@@ -31,5 +33,11 @@
 }
 
 .product-card-price {
+    margin: 0px;
+}
+
+.product-card-rating {
+    display: flex;
+    flex-direction: row;
     margin: 0px 0px 10px 0px;
 }

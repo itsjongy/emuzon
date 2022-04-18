@@ -87,6 +87,7 @@ const cartReducer = (state = initialState, action) => {
             action.carts.forEach(cart => {
                 newState[cart.product_id] = cart
             });
+            // console.log("newState", newState)
             return newState;
         case DELETE:
             newState = { ...state };

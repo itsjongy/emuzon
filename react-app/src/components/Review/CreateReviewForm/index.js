@@ -11,13 +11,14 @@ const CreateReview = ({ productId, user, setShowModal }) => {
     const [rating, setRating] = useState(1);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        let validateErrors = [];
-        if (!headline) validateErrors.push("Please enter a title.")
-        if (!body) validateErrors.push("Please enter a review.")
+    const validate = () => {
+        const validateErrors = [];
 
-        setValidationErrors(validateErrors);
-    }, [headline, body]);
+        if (!headline) validateErrors.push("Please enter a title/headline");
+        if (!body) validateErrors.push("Please enter a review");
+
+        return validateErrors;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -75,7 +76,6 @@ const CreateReview = ({ productId, user, setShowModal }) => {
                         value={rating}
                     ></input>
                     <label className="reviewImgText" htmlFor="reviewImage">Leave a photo review:</label>
-                    <input onChange={updateReviewImg} className="reviewImgText" type="file" id="avatar" name="reviewImage" accept="image/png, image/jpeg"></input>
                 </div>
                 <div>
                     <p>Add a headline</p>

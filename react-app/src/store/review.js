@@ -40,7 +40,7 @@ export const getReviews = () => async (dispatch) => {
 };
 
 export const getReview = (id) => async (dispatch) => {
-    const response = await fetch(`/api/products/${id}/reviews`)
+    const response = await fetch(`/api/products/${id}/reviews`);
     if (response.ok) {
         const review = await response.json();
         dispatch(loadOne(review));
