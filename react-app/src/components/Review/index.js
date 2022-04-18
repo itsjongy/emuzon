@@ -6,8 +6,7 @@ const Reviews = ({ userReview, reviewInfo }) => {
     const dispatch = useDispatch();
 
     const handleDelete = async (e) => {
-        e.preventDefault()
-
+        e.preventDefault();
         dispatch(deleteReview(reviewInfo.user_id, reviewInfo.product_id));
     };
 
@@ -35,7 +34,17 @@ const Reviews = ({ userReview, reviewInfo }) => {
             </div>
             <p className="review-date">Reviewed on {reviewInfo.updated_at}</p>
             <p className="review-body">{reviewInfo.body}</p>
-            {/* modal? */}
+            {userReview ? (
+                <div className="userReviews_review_buttons">
+                    <button
+                        className="userReviews_review_buttons_delete pointer"
+                        onClick={handleDelete}
+                        type="submit"
+                    >
+                        Delete Your Review
+                    </button>
+                </div>
+            ) : null}
         </div>
     );
 };

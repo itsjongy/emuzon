@@ -4,7 +4,6 @@ import { Link, useParams } from "react-router-dom";
 import { getProducts } from "../../store/product";
 import { getReview } from "../../store/review";
 import Reviews from "../Review";
-import CreateReviewModal from "../Review/CreateReviewModal/CReviewModal";
 import ReviewDetail from "../ReviewDetails";
 
 
@@ -94,21 +93,11 @@ const ProductPage = () => {
             <div>
                 <div>
                     <ReviewDetail review={review} averageRating={avgRating} />
-                    {user ? [
-                        userReview ? null : (
-                            <CreateReviewModal
-                                key={user.id}
-                                productId={productId}
-                                user={user}
-                            />
-                        ),
-                    ]
-                        : null}
                 </div>
                 <div>
                     {review[0]?.filter((ele) => ele.user_id === user?.id).concat(review.filter(reviewfilter => reviewfilter.user_id !== user?.id)).map((userreview) => (
                         <Reviews
-                            currentUserReview={userreview.user_id === user?.id}
+                            userReview={userreview.user_id === user?.id}
                             key={userreview.user_id}
                             reviewInfo={userreview}
                         />
