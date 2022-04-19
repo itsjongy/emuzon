@@ -35,6 +35,7 @@ def get_reviews(id):
 @product_routes.route('/<int:id>/reviews/new', methods=['POST'])
 def add_Review(id):
     review = request.json
+    print("backend review ---> ", review)
     newReview = Review(
         user_id=review['user_id'],
         product_id=review['product_id'],
@@ -66,6 +67,8 @@ def editReview(id, userId):
 @product_routes.route('/<int:id>/reviews/<int:userId>/delete', methods=['DELETE'])
 def deleteReview(id, userId):
     review = Review.query.filter(Review.product_id == id, Review.user_id == userId).first()
+    print("review ----->", review.to_dict())
+    reviewId = review.id
     db.session.delete(review)
     db.session.commit()
-    return 'Deleted >:)'
+    return reviewId

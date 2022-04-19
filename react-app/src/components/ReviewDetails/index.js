@@ -2,7 +2,7 @@ import './style/ReviewDetail.css'
 
 function ReviewDetail({ review, avgRating }) {
     const ratingMap = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 }
-    review[0]?.forEach((el) => (el.rating in ratingMap) ? ratingMap[el.rating]++ : null)
+    review?.forEach((el) => (el.rating in ratingMap) ? ratingMap[el.rating]++ : null)
 
     return (
         <div className="reviewdetail-container">
@@ -22,18 +22,15 @@ function ReviewDetail({ review, avgRating }) {
                     );
                 })}
                 <p className="reviewdetail-avgrating">
-                    {avgRating ? Math.floor(avgRating) : 0} out of 5
+                    {avgRating} out of 5
                 </p>
             </div>
             <span className="reviewdetail-totalRatings">
-                {review.length} total ratings
+                {review?.length} total ratings
             </span>
             {Array(5).fill().map((_, index) =>
-                review.length ? (
-                    <div
-                        key={`topDiv${index}`}
-                        className="reviewdetail_indivBreakdown"
-                    >
+                review?.length ? (
+                    <div key={`topDiv${index}`} className="reviewdetail_indivBreakdown">
                         <span className="reviewdetail-smallText">
                             {index + 1} star
                         </span>
@@ -46,8 +43,8 @@ function ReviewDetail({ review, avgRating }) {
                             ></span>
                         </div>
                         <span className="reviewdetail-smallText">
-                            {review.length
-                                ? ((ratingMap[index + 1] / review.length) * 100).toFixed()
+                            {review?.length
+                                ? ((ratingMap[index + 1] / review?.length) * 100).toFixed()
                                 : 0}{" "}
                             %
                         </span>

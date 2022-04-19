@@ -1,50 +1,42 @@
 import { useDispatch } from "react-redux"
+import { NavLink } from "react-router-dom";
 import { deleteReview } from "../../store/review";
 import "./style/Review.css";
 
-const Reviews = ({ userReview, reviewInfo }) => {
+const Reviews = ({ reviewInfo }) => {
     const dispatch = useDispatch();
 
     const handleDelete = async (e) => {
         e.preventDefault();
         dispatch(deleteReview(reviewInfo.user_id, reviewInfo.product_id));
     };
+    console.log("hehehehee reviewinfo --->", reviewInfo)
+
+    let addEditButton;
+    if (reviewInfo.user_id) {
+        addEditButton = (
+            <div className="review-add">
+                <NavLink to={`/products/${reviewInfo.product_id}/edit-review`}>
+                    Edit review
+                </NavLink>
+            </div>
+        )
+    } else {
+        addEditButton = null;
+    };
 
     return (
         <div className="review-container">
-            <div className="review-userinfo">
-                <p>{reviewInfo.user_first_name} {reviewInfo.user_last_name}</p>
+            <div className="userReviews_review_buttons">
+                {addEditButton}
+                <button
+                    className="userReviews_review_buttons_delete pointer"
+                    onClick={handleDelete}
+                    type="submit"
+                >
+                    Delete your review
+                </button>
             </div>
-            <div className="review-rating">
-                {Array(5).fill().map((_, i) => {
-                    let currentRating = i + 1;
-                    return (
-                        <p key={i}>
-                            <i
-                                key={i}
-                                className={`fas fa-star ${currentRating <= reviewInfo.rating
-                                    ? `star-yellow`
-                                    : `star-gray`
-                                    }`}
-                            />
-                        </p>
-                    );
-                })}
-                <p className="review-headline">{reviewInfo.headline}</p>
-            </div>
-            <p className="review-date">Reviewed on {reviewInfo.updated_at}</p>
-            <p className="review-body">{reviewInfo.body}</p>
-            {userReview ? (
-                <div className="userReviews_review_buttons">
-                    <button
-                        className="userReviews_review_buttons_delete pointer"
-                        onClick={handleDelete}
-                        type="submit"
-                    >
-                        Delete Your Review
-                    </button>
-                </div>
-            ) : null}
         </div>
     );
 };

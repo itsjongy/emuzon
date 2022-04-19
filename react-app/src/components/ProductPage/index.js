@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { getProducts } from "../../store/product";
 import { getReview } from "../../store/review";
 import Reviews from "../Review";
@@ -12,7 +12,6 @@ const ProductPage = () => {
     const { productId } = useParams();
     const product = useSelector(state => state.product)
     const review = useSelector(state => Object.values(state.review));
-    console.log("reviews ---->", review[0])
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
@@ -30,13 +29,10 @@ const ProductPage = () => {
         return currentDay.toLocaleDateString("en-US", options);
     }
 
-    const avgRating =
-        review[0]?.reduce(function (sum, value) {
+    let avgRating =
+        review?.reduce(function (sum, value) {
             return sum + value.rating;
-        }, 0) / review[0]?.length;
-
-    const userReview = review[0]?.some((review) => review.user_id === user?.id);
-    console.log("00000000", userReview)
+        }, 0) / review?.length;
 
     return (
         <div>
@@ -54,20 +50,18 @@ const ProductPage = () => {
                     <p>{product?.[productId]?.name}</p>
                     <div>
                         <div>
-                            {/* <div>
-                                {Array(5)
-                                    .fill()
-                                    .map((_, i) => {
-                                        let currentRating = i + 1;
-                                        return (
-                                            <p key={i}>
-                                                <i key={i} className={`fas fa-star ${currentRating <= avgRating ? `star-yellow` : `star-gray`}`}>
-                                                </i>
-                                            </p>
-                                        );
-                                    })};
-                            </div> */}
-                            <p>{review[0]?.length} ratings</p>
+                            <div>
+                                {Array(5).fill().map((_, i) => {
+                                    let currentRating = i + 1;
+                                    return (
+                                        <p key={i}>
+                                            <i key={i} className={`fas fa-star ${currentRating <= avgRating ? `star-yellow` : `star-gray`}`}>
+                                            </i>
+                                        </p>
+                                    )
+                                })}
+                            </div>
+                            <p>{review?.length} ratings</p>
                         </div>
                         <div>
                             <p>Price: {`$${product?.[productId]?.price}`}</p>
@@ -92,15 +86,46 @@ const ProductPage = () => {
             </div>
             <div>
                 <div>
-                    <ReviewDetail review={review} averageRating={avgRating} />
+                    {avgRating && <ReviewDetail review={review} avgRating={Math.floor(avgRating)} />}
+                    {user ? (
+                        <NavLink to={`/products/${productId}/new-review`}>Write a customer review</NavLink>
+                    ) :
+                        <a href="/login">Write a customer review</a>
+                    }
                 </div>
                 <div>
-                    {review[0]?.filter((ele) => ele.user_id === user?.id).concat(review.filter(reviewfilter => reviewfilter.user_id !== user?.id)).map((userreview) => (
-                        <Reviews
-                            userReview={userreview.user_id === user?.id}
-                            key={userreview.user_id}
-                            reviewInfo={userreview}
-                        />
+                    {review?.map((userReview) => (
+                        <>
+                            {console.log("user in html ---->", userReview)}
+                            {userReview.body}
+                            <div className="review-userinfo">
+                                <p>{userReview.user_first_name} {userReview.user_last_name}</p>
+                            </div>
+                            <div className="review-rating">
+                                {Array(5).fill().map((_, i) => {
+                                    let currentRating = i + 1;
+                                    return (
+                                        <p key={i}>
+                                            <i
+                                                key={i}
+                                                className={`fas fa-star ${currentRating <= userReview.rating
+                                                    ? `star-yellow`
+                                                    : `star-gray`
+                                                    }`}
+                                            />
+                                        </p>
+                                    );
+                                })}
+                                <p className="review-headline">{userReview.headline}</p>
+                            </div>
+                            <p className="review-date">Reviewed on {userReview.updated_at}</p>
+                            <p className="review-body">{userReview.body}</p>
+                            {user.id === userReview.user_id &&
+                                < Reviews
+                                    key={userReview.id}
+                                    reviewInfo={userReview}
+                                />}
+                        </>
                     ))}
                 </div>
             </div>

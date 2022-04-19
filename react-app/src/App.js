@@ -10,7 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage'
 import ProductPage from './components/ProductPage';
-import ReviewForm from './components/Review/ReviewForm';
+import NewReviewForm from './components/Review/CreateReviewForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,7 +47,7 @@ function App() {
           <ProductPage />
         </Route>
         <ProtectedRoute path="/products/:productId/new-review" exact={true}>
-          <ReviewForm />
+          <NewReviewForm />
         </ProtectedRoute>
         <Route path='/' exact={true} >
           {/* <h1>hi</h1> */}
