@@ -6,7 +6,7 @@
 }
 
 .splash-img {
-    width: 1500px;
+    width: 1600px;
     max-height: 842.50px;
     margin-bottom: -450px;
     z-index: -1;
@@ -14,6 +14,7 @@
 }
 
 .splash-products {
+    box-sizing: border-box;
     display: flex;
     margin: 0px 10px;
 }

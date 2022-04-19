@@ -6,11 +6,11 @@ import "./style/Review.css";
 const Reviews = ({ reviewInfo }) => {
     const dispatch = useDispatch();
 
+    console.log("hehehehee reviewinfo --->", reviewInfo)
     const handleDelete = async (e) => {
         e.preventDefault();
-        dispatch(deleteReview(reviewInfo.user_id, reviewInfo.product_id));
+        dispatch(deleteReview(reviewInfo.id));
     };
-    console.log("hehehehee reviewinfo --->", reviewInfo)
 
     let addEditButton;
     if (reviewInfo.user_id) {

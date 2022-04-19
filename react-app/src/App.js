@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage'
 import ProductPage from './components/ProductPage';
 import NewReviewForm from './components/Review/CreateReviewForm';
+import EditReviewForm from './components/Review/EditReviewForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,12 +44,15 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path="/products/:productId" exact={true}>
-          <ProductPage />
-        </Route>
         <ProtectedRoute path="/products/:productId/new-review" exact={true}>
           <NewReviewForm />
         </ProtectedRoute>
+        <ProtectedRoute path="/products/:productId/edit-review" exact={true}>
+          <EditReviewForm />
+        </ProtectedRoute>
+        <Route path="/products/:productId" exact={true}>
+          <ProductPage />
+        </Route>
         <Route path='/' exact={true} >
           {/* <h1>hi</h1> */}
           <SplashPage />

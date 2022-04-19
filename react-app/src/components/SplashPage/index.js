@@ -23,6 +23,7 @@ const SplashPage = () => {
 
     const rowOne = products.slice(0, 3);
     const rowTwo = products.slice(3, 6);
+    const rowThree = products.slice(6, 9);
 
     return (
         <div className="splash-container">
@@ -34,6 +35,11 @@ const SplashPage = () => {
                         name={each.name}
                         price={each.price}
                         product_img={each.product_img}
+                        rating={
+                            each.average_rating_length
+                                ? each.average_rating_total / each.average_rating_length
+                                : 0
+                        }
                         id={each.id} />
                 ))}
             </div>
@@ -44,6 +50,26 @@ const SplashPage = () => {
                         name={each.name}
                         price={each.price}
                         product_img={each.product_img}
+                        rating={
+                            each.average_rating_length
+                                ? each.average_rating_total / each.average_rating_length
+                                : 0
+                        }
+                        id={each.id} />
+                ))}
+            </div>
+            <div className="splash-products">
+                {rowThree.map((each) => (
+                    <ProductCard
+                        key={each.id}
+                        name={each.name}
+                        price={each.price}
+                        product_img={each.product_img}
+                        rating={
+                            each.average_rating_length
+                                ? each.average_rating_total / each.average_rating_length
+                                : 0
+                        }
                         id={each.id} />
                 ))}
             </div>
