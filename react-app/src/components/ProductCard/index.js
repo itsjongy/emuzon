@@ -5,7 +5,6 @@ import './style/ProductCard.css';
 const ProductCard = ({ name, price, product_img, rating, id: item }) => {
 
     const avgRating = rating;
-    console.log("splash page rating", rating);
 
     let length;
     if (name.length < 50) {

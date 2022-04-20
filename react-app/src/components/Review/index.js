@@ -5,10 +5,11 @@ import "./style/Review.css";
 
 const Reviews = ({ reviewInfo }) => {
     const dispatch = useDispatch();
-    console.log("reviewinfo----->", reviewInfo)
+    console.log("reviewInfo----->", reviewInfo)
+
     const handleDelete = async (e) => {
         e.preventDefault();
-        dispatch(deleteReview(reviewInfo.id));
+        dispatch(deleteReview(reviewInfo.user_id, reviewInfo.product_id));
     };
 
     let addEditButton;

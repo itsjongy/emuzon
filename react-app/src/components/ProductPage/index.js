@@ -12,7 +12,6 @@ const ProductPage = () => {
     const { productId } = useParams();
     const product = useSelector(state => state.product)
     const review = useSelector(state => Object.values(state.review));
-    console.log('review ----->', review)
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
@@ -120,9 +119,9 @@ const ProductPage = () => {
                 <div className="productpage-reviewcontainer">
                     <p className="productpage-allreviewtext">Reviews of the product</p>
                     {review?.reverse().map((userReview) => (
-                        <div className="productpage-specificrevcontainer">
+                        <div key={userReview.id} className="productpage-specificrevcontainer">
                             <div>
-                                {/* {console.log("user in html ---->", userReview)} */}
+                                {console.log("user in html ---->", userReview)}
                                 <div className="productpage-reviewuserinfo">
                                     <p className="productpage-reviewuser">{userReview.user_first_name} {userReview.user_last_name}</p>
                                 </div>

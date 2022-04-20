@@ -9,7 +9,6 @@ const EditReviewForm = () => {
     const history = useHistory();
     const { productId, reviewId } = useParams();
     const review = useSelector(state => state.review);
-    console.log("review id ----->", reviewId)
 
     const [headline, setHeadline] = useState(review[reviewId]?.headline);
     const [body, setBody] = useState(review[reviewId]?.body);
