@@ -5,7 +5,7 @@ import { getProducts } from "../../store/product";
 import { getReview } from "../../store/review";
 import Reviews from "../Review";
 import ReviewDetail from "../ReviewDetails";
-
+import "./style/ProductPage.css";
 
 const ProductPage = () => {
     const dispatch = useDispatch();
@@ -36,21 +36,22 @@ const ProductPage = () => {
 
     return (
         <div>
-            <div>
-                <Link to='/' exact='true'>
-                    Home
+            <div className="productpage-categories">
+                <Link style={{ color: "#565959" }} to='/' exact='true'>
+                    <p className="productpage-home">Home</p>
                 </Link>
+                <p>></p>
                 <p>{product?.[productId]?.category}</p>
             </div>
-            <div>
-                <div>
+            <div className="productpage-productcontainer">
+                <div className="productpage-imagecontainer">
                     <img alt="productpage-logo" className="productpage-image" src={`${product?.[productId]?.product_img}`}></img>
                 </div>
-                <div>
-                    <p>{product?.[productId]?.name}</p>
+                <div className="productpage-productinfocontainer">
+                    <p className="productpage-productname">{product?.[productId]?.name}</p>
                     <div>
-                        <div>
-                            <div>
+                        <div className="productpage-ratingcontainer">
+                            <div className="productpage-rating">
                                 {Array(5).fill().map((_, i) => {
                                     let currentRating = i + 1;
                                     return (
@@ -61,47 +62,63 @@ const ProductPage = () => {
                                     )
                                 })}
                             </div>
-                            <p>{review?.length} ratings</p>
+                            <p className="productpage-ratingnum">{review?.length} ratings</p>
+                        </div>
+                        <div className="productpage-pricecontainer">
+                            <p className="productpage-pricetag">$</p>
+                            <p className="productpage-price">{`${product?.[productId]?.price}`}</p>
+                        </div>
+                        <div className="productpage-returncontainer">
+                            <p className="productpage-returnand">&</p>
+                            <p className="productpage-returnfree">FREE Returns</p>
                         </div>
                         <div>
-                            <p>Price: {`$${product?.[productId]?.price}`}</p>
-                            <p>&</p>
-                            <p>FREE RETURNS</p>
-                        </div>
-                        <div>
-                            <p>About this item:</p>
-                            <p>{product?.[productId]?.description}</p>
+                            <p className="productpage-productabout">About this item:</p>
+                            <ul>
+                                <li className="productpage-productdesc">{product?.[productId]?.description}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div>
-                    <p>{`$${product?.[productId]?.price}`}</p>
-                    <div>
-                        <p>&</p>
-                        <p>FREE RETURNS</p>
+                <div className="productpage-productrightcont">
+                    <div className="productpage-rpricecontainer">
+                        <p className="productpage-pricetag">$</p>
+                        <p className="productpage-price">{`${product?.[productId]?.price}`}</p>
                     </div>
-                    <p>FREE DELIVERY: {currentDate()}</p>
+                    <div className="productpage-returncontainer">
+                        <p className="productpage-returnand2">&</p>
+                        <p className="productpage-returnfree2">FREE Returns</p>
+                    </div>
+                    <p className="productpage-deliveryfree">FREE delivery: {currentDate()}</p>
                     {/* Add to cart function here */}
                 </div>
             </div>
-            <div>
-                <div>
+            <hr className="productpage-divider"></hr>
+            <div className="productpage-wholereviewcontainer">
+                <div className="productpage-reviewstuff">
                     {avgRating && <ReviewDetail review={review} avgRating={Math.floor(avgRating)} />}
-                    {user ? (
-                        <NavLink to={`/products/${productId}/new-review`}>Write a customer review</NavLink>
-                    ) :
-                        <a href="/login">Write a customer review</a>
-                    }
+                    <hr className="productpage-reviewstuffdivider"></hr>
+                    <div className="product-page-createreviewcontainer">
+                        <h3>Review this product</h3>
+                        <p className="productpage-createreviewtext">Share your thoughts with other customers</p>
+                        <div className="productpage-createcontainer">
+                            {user ? (
+                                <NavLink className="productpage-createreviewbutton" to={`/products/${productId}/new-review`}>Write a customer review</NavLink>
+                            ) :
+                                <a className="productpage-createreviewbutton" href="/login">Write a customer review</a>
+                            }
+                        </div>
+                    </div>
                 </div>
-                <div>
+                <div className="productpage-reviewcontainer">
+                    <p className="productpage-allreviewtext">Reviews of the product</p>
                     {review?.map((userReview) => (
                         <>
                             {console.log("user in html ---->", userReview)}
-                            {userReview.body}
-                            <div className="review-userinfo">
-                                <p>{userReview.user_first_name} {userReview.user_last_name}</p>
+                            <div className="productpage-reviewuserinfo">
+                                <p className="productpage-reviewuser">{userReview.user_first_name} {userReview.user_last_name}</p>
                             </div>
-                            <div className="review-rating">
+                            <div className="productpage-rating">
                                 {Array(5).fill().map((_, i) => {
                                     let currentRating = i + 1;
                                     return (

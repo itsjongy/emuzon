@@ -6,7 +6,7 @@ function ReviewDetail({ review, avgRating }) {
 
     return (
         <div className="reviewdetail-container">
-            <p>Reviews</p>
+            <h2 className='reviewdetail-reviewtext'>Customer reviews</h2>
             <div className="reviewdetail-rating">
                 {Array(5).fill().map((_, i) => {
                     let currentRating = i + 1;
@@ -25,53 +25,52 @@ function ReviewDetail({ review, avgRating }) {
                     {avgRating} out of 5
                 </p>
             </div>
-            <span className="reviewdetail-totalRatings">
+            <span className="reviewdetail-totalratings">
                 {review?.length} total ratings
             </span>
-            {Array(5).fill().map((_, index) =>
-                review?.length ? (
-                    <div key={`topDiv${index}`} className="reviewdetail_indivBreakdown">
-                        <span className="reviewdetail-smallText">
-                            {index + 1} star
-                        </span>
-                        <div className="reviewdetail-indivBreakdown-outerProgress">
-                            <span
-                                className="reviewdetail-indivBreakdown-innerProgress"
-                                style={{
-                                    width: `${((ratingMap[index + 1] / review.length) * 100).toFixed()}%`,
-                                }}
-                            ></span>
+            <div className='reviewdetail-barcontainer'>
+                {Array(5).fill().map((_, index) =>
+                    review?.length ? (
+                        <div key={`topDiv${index}`} className="reviewdetail-bar">
+                            <span className="reviewdetail-numbercount">
+                                {index + 1} star
+                            </span>
+                            <div className="reviewdetail-barouterprogress">
+                                <span
+                                    className="reviewdetail-barinnerprogress"
+                                    style={{
+                                        width: `${((ratingMap[index + 1] / review.length) * 100).toFixed()}%`,
+                                    }}
+                                ></span>
+                            </div>
+                            <span className="reviewdetail-numbercount2">
+                                {review?.length
+                                    ? ((ratingMap[index + 1] / review?.length) * 100).toFixed()
+                                    : 0}{" "}
+                                %
+                            </span>
                         </div>
-                        <span className="reviewdetail-smallText">
-                            {review?.length
-                                ? ((ratingMap[index + 1] / review?.length) * 100).toFixed()
-                                : 0}{" "}
-                            %
-                        </span>
-                    </div>
-                ) : (
-                    <div
-                        key={`topDiv${index}`}
-                        className="reviewdetail_indivBreakdown"
-                    >
-                        <span className="reviewdetail-smallText">
-                            {index + 1} star
-                        </span>
-                        <div className="reviewdetail-indivBreakdown-outerProgress">
-                            <span
-                                className="reviewdetail-indivBreakdown-innerProgress"
-                                style={{
-                                    width: `0%`,
-                                }}
-                            ></span>
+                    ) : (
+                        <div key={`topDiv${index}`} className="reviewdetail-bar">
+                            <span className="reviewdetail-numbercount">
+                                {index + 1} star
+                            </span>
+                            <div className="reviewdetail-barouterprogress">
+                                <span
+                                    className="reviewdetail-barinnerprogress"
+                                    style={{
+                                        width: `0%`,
+                                    }}
+                                ></span>
+                            </div>
+                            <span className="reviewdetail-numbercount2">
+                                0%
+                            </span>
                         </div>
-                        <span className="reviewdetail-smallText">
-                            0%
-                        </span>
-                    </div>
+                    )
                 )
-            )
-                .reverse()}
+                    .reverse()}
+            </div>
         </div>
     );
 }
