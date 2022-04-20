@@ -12,6 +12,7 @@ const ProductPage = () => {
     const { productId } = useParams();
     const product = useSelector(state => state.product)
     const review = useSelector(state => Object.values(state.review));
+    console.log('review ----->', review)
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
@@ -49,7 +50,7 @@ const ProductPage = () => {
                 </div>
                 <div className="productpage-productinfocontainer">
                     <p className="productpage-productname">{product?.[productId]?.name}</p>
-                    <div>
+                    <div className="productpage-productinfostuff">
                         <div className="productpage-ratingcontainer">
                             <div className="productpage-rating">
                                 {Array(5).fill().map((_, i) => {
@@ -96,8 +97,14 @@ const ProductPage = () => {
             <hr className="productpage-divider"></hr>
             <div className="productpage-wholereviewcontainer">
                 <div className="productpage-reviewstuff">
-                    {avgRating && <ReviewDetail review={review} avgRating={Math.floor(avgRating)} />}
-                    <hr className="productpage-reviewstuffdivider"></hr>
+                    {avgRating ? (
+                        <div>
+                            {avgRating && <ReviewDetail review={review} avgRating={Math.floor(avgRating)} />}
+                            <hr className="productpage-reviewstuffdivider"></hr>
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
                     <div className="product-page-createreviewcontainer">
                         <h3>Review this product</h3>
                         <p className="productpage-createreviewtext">Share your thoughts with other customers</p>
@@ -112,41 +119,43 @@ const ProductPage = () => {
                 </div>
                 <div className="productpage-reviewcontainer">
                     <p className="productpage-allreviewtext">Reviews of the product</p>
-                    {review?.map((userReview) => (
-                        <>
-                            {console.log("user in html ---->", userReview)}
-                            <div className="productpage-reviewuserinfo">
-                                <p className="productpage-reviewuser">{userReview.user_first_name} {userReview.user_last_name}</p>
+                    {review?.reverse().map((userReview) => (
+                        <div className="productpage-specificrevcontainer">
+                            <div>
+                                {/* {console.log("user in html ---->", userReview)} */}
+                                <div className="productpage-reviewuserinfo">
+                                    <p className="productpage-reviewuser">{userReview.user_first_name} {userReview.user_last_name}</p>
+                                </div>
+                                <div className="productpage-rating">
+                                    {Array(5).fill().map((_, i) => {
+                                        let currentRating = i + 1;
+                                        return (
+                                            <p key={i}>
+                                                <i
+                                                    key={i}
+                                                    className={`fas fa-star ${currentRating <= userReview.rating
+                                                        ? `star-yellow`
+                                                        : `star-gray`
+                                                        }`}
+                                                />
+                                            </p>
+                                        );
+                                    })}
+                                    <p className="productpage-reviewheadline">{userReview.headline}</p>
+                                </div>
+                                <p className="productpage-reviewdate">Reviewed on {userReview.updated_at}</p>
+                                <p className="productpage-reviewbody">{userReview.body}</p>
+                                {user && user.id === userReview.user_id &&
+                                    < Reviews
+                                        key={userReview.id}
+                                        reviewInfo={userReview}
+                                    />}
                             </div>
-                            <div className="productpage-rating">
-                                {Array(5).fill().map((_, i) => {
-                                    let currentRating = i + 1;
-                                    return (
-                                        <p key={i}>
-                                            <i
-                                                key={i}
-                                                className={`fas fa-star ${currentRating <= userReview.rating
-                                                    ? `star-yellow`
-                                                    : `star-gray`
-                                                    }`}
-                                            />
-                                        </p>
-                                    );
-                                })}
-                                <p className="review-headline">{userReview.headline}</p>
-                            </div>
-                            <p className="review-date">Reviewed on {userReview.updated_at}</p>
-                            <p className="review-body">{userReview.body}</p>
-                            {user.id === userReview.user_id &&
-                                < Reviews
-                                    key={userReview.id}
-                                    reviewInfo={userReview}
-                                />}
-                        </>
+                        </div>
                     ))}
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

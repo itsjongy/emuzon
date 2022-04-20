@@ -7,12 +7,13 @@ import "./style/EditReviewForm.css";
 const EditReviewForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { productId } = useParams();
+    const { productId, reviewId } = useParams();
     const review = useSelector(state => state.review);
+    console.log("review id ----->", reviewId)
 
-    const [headline, setHeadline] = useState(review[productId]?.headline);
-    const [body, setBody] = useState(review[productId]?.body);
-    const [rating, setRating] = useState(review[productId]?.rating);
+    const [headline, setHeadline] = useState(review[reviewId]?.headline);
+    const [body, setBody] = useState(review[reviewId]?.body);
+    const [rating, setRating] = useState(review[reviewId]?.rating);
     let [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -32,8 +33,8 @@ const EditReviewForm = () => {
         else {
             const payload = await dispatch(
                 updateReview(
-                    review[productId].product_id,
-                    review[productId].user_id,
+                    review[reviewId].product_id,
+                    review[reviewId].user_id,
                     headline,
                     body,
                     rating
@@ -45,7 +46,7 @@ const EditReviewForm = () => {
         }
     };
 
-    if (!review[productId]) {
+    if (!review[reviewId]) {
         history.push(`/products/${productId}`)
     }
 

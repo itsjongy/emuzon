@@ -1,0 +1,38 @@
+.review-userbuttons {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-add {
+    background: rgb(255, 255, 255);
+    border-color: rgb(213, 217, 217);
+    border-radius: 7px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgb(213 217 217 / 50%) 0px 2px 5px 0px;
+    color: black;
+    cursor: pointer;
+    font-size: 13px;
+    height: 29px;
+    padding: 10px 20px 0px 20px;
+}
+
+.review-deletebutton {
+    background: rgb(255, 68, 68);
+    border-color: rgb(0, 0, 0);
+    border-radius: 7px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: rgb(213 217 217 / 50%) 0px 2px 5px 0px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    height: 41px;
+    text-align: center;
+    text-decoration: none !important;
+    vertical-align: middle;
+    padding: 10px 20px;
+    margin-left: 10px;
+}

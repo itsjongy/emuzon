@@ -39,6 +39,7 @@
 
 .productpage-rating {
     display: flex;
+    align-items: center;
 }
 
 .productpage-ratingnum {
@@ -172,6 +173,7 @@
 
 .productpage-reviewcontainer {
     margin-top: 20px;
+    width: 100%;
 }
 
 .productpage-allreviewtext {
@@ -181,4 +183,31 @@
 
 .productpage-reviewuser {
     margin: 0px;
+    font-size: 13px;
+}
+
+.productpage-reviewheadline {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.productpage-reviewdate {
+    color: #565959;
+    font-size: 14px;
+    margin: 0px;
+}
+
+.productpage-specificrevcontainer {
+    border-bottom: 1px solid rgb(213, 217, 217);
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.productpage-reviewbody {
+    font-size: 14px;
+}
+
+.productpage-productinfostuff {
+    width: 95%;
 }

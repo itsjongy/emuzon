@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/product";
-import ProductCard from "../Product/ProductCard";
+import ProductCard from "../ProductCard";
 
 import './style/index.css';
 

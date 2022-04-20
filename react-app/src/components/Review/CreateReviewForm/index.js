@@ -44,7 +44,6 @@ const NewReviewForm = () => {
         };
     }
 
-
     return (
         <form>
             <div>

@@ -5,8 +5,7 @@ import "./style/Review.css";
 
 const Reviews = ({ reviewInfo }) => {
     const dispatch = useDispatch();
-
-    console.log("hehehehee reviewinfo --->", reviewInfo)
+    console.log("reviewinfo----->", reviewInfo)
     const handleDelete = async (e) => {
         e.preventDefault();
         dispatch(deleteReview(reviewInfo.id));
@@ -16,7 +15,7 @@ const Reviews = ({ reviewInfo }) => {
     if (reviewInfo.user_id) {
         addEditButton = (
             <div className="review-add">
-                <NavLink to={`/products/${reviewInfo.product_id}/edit-review`}>
+                <NavLink to={`/products/${reviewInfo.product_id}/${reviewInfo.id}/edit-review`}>
                     Edit review
                 </NavLink>
             </div>
@@ -27,14 +26,14 @@ const Reviews = ({ reviewInfo }) => {
 
     return (
         <div className="review-container">
-            <div className="userReviews_review_buttons">
+            <div className="review-userbuttons">
                 {addEditButton}
                 <button
-                    className="userReviews_review_buttons_delete pointer"
+                    className="review-deletebutton"
                     onClick={handleDelete}
                     type="submit"
                 >
-                    Delete your review
+                    Delete review
                 </button>
             </div>
         </div>
