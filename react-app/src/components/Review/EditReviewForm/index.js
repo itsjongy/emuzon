@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { updateReview } from "../../../store/review";
 import "./style/EditReviewForm.css";
 
-function EditReviewForm({ reviewInfo }) {
+const EditReviewForm = () => {
     const dispatch = useDispatch();
-    const [headline, setHeadline] = useState("");
-    const [body, setBody] = useState("");
-    const [rating, setRating] = useState("");
+    const history = useHistory();
+    const { productId } = useParams();
+    const review = useSelector(state => state.review);
+
+    const [headline, setHeadline] = useState(review[productId]?.headline);
+    const [body, setBody] = useState(review[productId]?.body);
+    const [rating, setRating] = useState(review[productId]?.rating);
     let [errors, setErrors] = useState([]);
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -23,21 +28,26 @@ function EditReviewForm({ reviewInfo }) {
     const handleEdit = async (e) => {
         e.preventDefault();
         errors = validate();
-        if (errors.length) return setValidationErrors(errors);
+        if (errors?.length) return setValidationErrors(errors);
         else {
-            const data = await dispatch(
+            const payload = await dispatch(
                 updateReview(
-                    reviewInfo.product_id,
-                    reviewInfo.user_id,
+                    review[productId].product_id,
+                    review[productId].user_id,
                     headline,
                     body,
                     rating
                 ));
-            if (data) {
-                setErrors(data);
+            if (payload) {
+                setErrors(payload);
+                history.push(`/products/${productId}`)
             }
         }
     };
+
+    if (!review[productId]) {
+        history.push(`/products/${productId}`)
+    }
 
     return (
         <form>
@@ -71,6 +81,7 @@ function EditReviewForm({ reviewInfo }) {
                         type="text"
                         placeholder="What's most important to know?"
                         onChange={(e) => setHeadline(e.target.value)}
+                        value={headline}
                         className="reviewform-titleinput"
                     ></input>
                 </div>
@@ -82,6 +93,7 @@ function EditReviewForm({ reviewInfo }) {
                         columns={10}
                         style={{ resize: "None" }}
                         onChange={(e) => setBody(e.target.value)}
+                        value={body}
                         className="reviewform-descinput"
                     />
                 </div>

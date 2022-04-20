@@ -48,17 +48,14 @@ export const getReview = (id) => async (dispatch) => {
     };
 };
 
-export const addReview = (product_id, user_id, headline, body, rating) => async (dispatch) => {
-    console.log("thunk product_id ---->", product_id, user_id, headline, body, rating)
-    const response = await fetch(`/api/products/${product_id}/reviews/new`, {
+export const addReview = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/products/${payload.product_id}/reviews/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product_id, user_id, headline, body, rating })
+        body: JSON.stringify(payload)
     });
-    console.log("thunk post response ----->", response)
     if (response.ok) {
         const review = await response.json();
-        console.log("thunk post review ---->", review)
         dispatch(addOne(review));
         return review;
     };

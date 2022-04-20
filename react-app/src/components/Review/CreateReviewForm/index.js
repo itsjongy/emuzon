@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getProduct } from "../../../store/product";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { addReview } from "../../../store/review";
 import "./style/CreateReviewForm.css";
 
-const NewReviewForm = ({ productId, userId }) => {
+const NewReviewForm = () => {
+    const user = useSelector(state => state.session.user)
     const dispatch = useDispatch();
+    const history = useHistory();
+    const { productId } = useParams();
+
     const [headline, setHeadline] = useState("");
     const [body, setBody] = useState("");
     const [rating, setRating] = useState(1);
@@ -26,17 +30,20 @@ const NewReviewForm = ({ productId, userId }) => {
         errors = validate();
         if (errors?.length) return setValidationErrors(errors);
         else {
-            const newReview = {
-                user_id: userId,
+            const payload = {
+                user_id: user.id,
                 product_id: productId,
                 headline,
                 body,
                 rating
-            };
-            dispatch(addReview(newReview));
-            dispatch(getProduct(productId));
-        }
+            }
+            if (payload) {
+                dispatch(addReview(payload))
+                history.push(`/products/${productId}`)
+            }
+        };
     }
+
 
     return (
         <form>
