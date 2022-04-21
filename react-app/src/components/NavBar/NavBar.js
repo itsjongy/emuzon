@@ -8,13 +8,13 @@ import './style/NavBar.css'
 
 const NavBar = () => {
   const dispatch = useDispatch();
-  // const [categories, setCategories] = useState();
+  // const [categories, setCategories] = useState("");
   const cart = useSelector(state => Object.values(state.cart));
   const user = useSelector(state => state.session.user);
 
   useEffect(() => {
     (async () => {
-      // await dispatch(getCart(user.id))
+      await dispatch(getCart(user?.id))
     })()
   }, [dispatch, user])
 

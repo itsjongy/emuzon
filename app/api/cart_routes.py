@@ -18,12 +18,12 @@ def add_cart_item(userId, id):
         newItem = Cart_item(product_id=id, user_id=userId, quantity=1)
         db.session.add(newItem)
         db.session.commit()
-        return newItem.to_dict()
+        return {'Cart_item': newItem.to_dict()}
     else:
         currentQuantity = cart.quantity
         cart.quantity = currentQuantity + 1
         db.session.commit()
-        return cart.to_dict()
+        return {'Cart_item': cart.to_dict()}
 
 
 @cart_routes.route('/<int:userId>/cart/<int:id>/all', methods=['DELETE'])
@@ -34,7 +34,7 @@ def delete_cart_item(userId, id):
     return jsonify("Success")
 
 
-@cart_routes.route('/<int:userId>/cart/<int:id>/', methods=['PUT'])
+@cart_routes.route('/<int:userId>/cart/<int:id>', methods=['PUT'])
 def update_cart_item(userId, id):
     data = request.get_json()
     cart_item = Cart_item.query.filter(Cart_item.product_id == id, Cart_item.user_id == userId).first()
