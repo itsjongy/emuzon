@@ -1,16 +1,16 @@
-const ADD_ONE = 'cart/ADD_ONE';
 const LOAD = 'cart/LOAD';
+const ADD_ONE = 'cart/ADD_ONE';
 const DELETE = 'cart/DELETE';
 const EDIT = 'cart/EDIT';
+
+const load = (carts) => ({
+    type: LOAD,
+    payload: carts
+});
 
 const addOne = (cart) => ({
     type: ADD_ONE,
     cart
-});
-
-const load = (carts) => ({
-    type: LOAD,
-    carts
 });
 
 const deleteOne = (cartId) => ({
@@ -23,11 +23,25 @@ const editOne = (cart) => ({
     cart
 });
 
+export const getCart = (userId) => async (dispatch) => {
+    if (userId) {
+        const response = await fetch(`/api/${userId}/cart`)
+        if (response.ok) {
+            const cart = await response.json();
+            const newCart = cart.Cart_item;
+            dispatch(load(newCart));
+            return newCart;
+        };
+    } else {
+        return ['User is not logged in.']
+    };
+};
+
 export const addCart = (user, item) => async (dispatch) => {
     const response = await fetch(`/api/${user}/cart/${item}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(item, user)
+        body: JSON.stringify({ "product_id": item, "user_id": user })
     });
     if (response.ok) {
         const cart = await response.json();
@@ -36,28 +50,13 @@ export const addCart = (user, item) => async (dispatch) => {
     };
 };
 
-export const getCart = (userId) => async (dispatch) => {
-    if (userId) {
-        const response = await fetch(`/api/${userId}/cart`)
-        if (response.ok) {
-            const cart = await response.json();
-            dispatch(load(cart));
-            return cart;
-        };
-    } else {
-        return ['User is not logged in.']
-    };
-};
-
 export const deleteCart = (user, item) => async (dispatch) => {
     const response = await fetch(`/api/${user}/cart/${item}/all`, {
         method: 'DELETE'
     });
     if (response.ok) {
-        const cart = await response.json();
-        dispatch(deleteOne(cart))
-        return cart;
-    };
+        return dispatch(deleteOne(item));
+    }
 }
 
 export const editCart = (user, item, data) => async (dispatch) => {
@@ -78,15 +77,15 @@ const initialState = {};
 const cartReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
+        case LOAD:
+            newState = {};
+            action.payload.forEach(cart => {
+                newState[cart.product_id] = cart
+            });
+            return newState;
         case ADD_ONE:
             newState = { ...state };
             newState[action.cart.id] = action.cart;
-            return newState;
-        case LOAD:
-            newState = {};
-            action.carts.forEach(cart => {
-                newState[cart.product_id] = cart
-            });
             return newState;
         case DELETE:
             newState = { ...state };

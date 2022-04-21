@@ -12,6 +12,7 @@ import SplashPage from './components/SplashPage'
 import ProductPage from './components/ProductPage';
 import NewReviewForm from './components/Review/CreateReviewForm';
 import EditReviewForm from './components/Review/EditReviewForm';
+import Cart from './components/Cart';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,6 +53,9 @@ function App() {
         </ProtectedRoute>
         <Route path="/products/:productId" exact={true}>
           <ProductPage />
+        </Route>
+        <Route path="/cart" exact={true}>
+          <Cart />
         </Route>
         <Route path='/' exact={true} >
           {/* <h1>hi</h1> */}

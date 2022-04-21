@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { getProducts } from "../../store/product";
 import { getReview } from "../../store/review";
+import AddCart from "../CartItem/NewCartItem/NewCartItem";
 import Reviews from "../Review";
 import ReviewDetail from "../ReviewDetails";
 import "./style/ProductPage.css";
@@ -90,7 +91,7 @@ const ProductPage = () => {
                         <p className="productpage-returnfree2">FREE Returns</p>
                     </div>
                     <p className="productpage-deliveryfree">FREE delivery: {currentDate()}</p>
-                    {/* Add to cart function here */}
+                    <AddCart user={user} productId={productId} />
                 </div>
             </div>
             <hr className="productpage-divider"></hr>
