@@ -34,11 +34,11 @@ const Cart = () => {
     }, 0.00);
 
     return (
-        <div>
-            <div>
+        <div className="cart-page">
+            <div className="cart-container">
                 {loaded && cartItems.length > 0 ?
                     <div>
-                        <p>Shopping Cart</p>
+                        <p className="cart-shoppingcarttext">Shopping Cart</p>
                     </div>
                     :
                     <div></div>

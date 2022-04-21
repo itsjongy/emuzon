@@ -19,9 +19,9 @@ function EditCartItem({ userId, product_id, quantity }) {
     useEffect(() => {
         const validationErrors = [];
         if (!/^[1-9][0-9]*$/.test(itemCount))
-            validationErrors.push("Please enter a valid quantity of 1 or more");
+            validationErrors.push("Enter a quantity of 1 or more.");
         if (itemCount > 999)
-            validationErrors.push("Please call wholesale for quantities over 999!");
+            validationErrors.push("Order is too large in quantity.");
         setErrors(validationErrors)
     }, [itemCount])
 

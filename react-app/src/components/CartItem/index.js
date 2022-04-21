@@ -13,26 +13,34 @@ const CartItem = ({ id: product_id, userId, product_img, name, price, total_rati
     }
 
     return (
-        <div>
-            <Link to={`/products/${product_id}`}>
-                <img alt="" className="cartProduct__image" src={product_img} />
+        <div className='cartitem-container'>
+            <Link className='cartitem-imagecontainer' to={`/products/${product_id}`}>
+                <img className='cartitem-image' alt="" src={product_img} />
             </Link>
-            <div>
-                <p>{name}</p>
-                <p>In Stock</p>
-                <img alt='prime' src='https://m.media-amazon.com/images/G/01/AmazonStores/prime.png'></img>
-                <p>&</p>
-                <p>FREE Returns</p>
-                <div>
-                    <p>$</p>
-                    <p>{price}</p>
+            <div className='cartitem-productinfocontainer'>
+                <div className='cartitem-specificcontainer'>
+                    <div className='cartitem-productcontainer'>
+                        <p className='cartitem-productname'>{name}</p>
+                        <p className='cartitem-instock'>In Stock</p>
+                        <div className='cartitem-stockcontainer'>
+                            <img className='cartitem-primelogo' alt='prime' src='https://m.media-amazon.com/images/G/01/AmazonStores/prime.png'></img>
+                            <p className='cartitem-andtext'>&</p>
+                            <p className='cartitem-returntext'>FREE Returns</p>
+                        </div>
+                        <div className='cartitem-buttoncontainer'>
+                            <EditCartItem
+                                userId={userId}
+                                product_id={product_id}
+                                quantity={quantity}
+                            />
+                            <div className='cartitem-seperator'></div>
+                            <button className='cartitem-deletebutton' onClick={deleteItem}>Delete</button>
+                        </div>
+                    </div>
+                    <div className='cartitem-pricecontainer'>
+                        <p className='cartitem-price'>${price}</p>
+                    </div>
                 </div>
-                <EditCartItem
-                    userId={userId}
-                    product_id={product_id}
-                    quantity={quantity}
-                />
-                <button onClick={deleteItem}>Delete</button>
             </div>
         </div>
     )

@@ -20,7 +20,7 @@ def seed_products():
         description="Acetaminophen that releases quickly.",
         price="24.69",
         category="Beauty & Health",
-        product_img="https://m.media-amazon.com/images/I/61-sbCMZNrL._AC_SX466_.jpg"
+        product_img="https://m.media-amazon.com/images/I/71XLNRnDYRS._AC_SX679_.jpg"
         )
     product4 = Product(
         name='The Original Slinky Walking Spring Toy',
