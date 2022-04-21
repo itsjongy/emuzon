@@ -1,14 +1,14 @@
-const GET_REVIEWS = 'reviews/GET_REVIEWS';
+// const GET_REVIEWS = 'reviews/GET_REVIEWS';
 const GET_ONE = 'reviews/GET_ONE';
 const ADD_ONE = 'reviews/ADD_ONE';
 const DELETE_ONE = 'reviews/DELETE_ONE';
 const UPDATE_ONE = 'reviews/UPDATE_ONE';
 
 
-const load = (reviews) => ({
-    type: GET_REVIEWS,
-    reviews
-});
+// const load = (reviews) => ({
+//     type: GET_REVIEWS,
+//     reviews
+// });
 
 const loadOne = (review) => ({
     type: GET_ONE,
@@ -30,17 +30,17 @@ const updateOne = (review) => ({
     review
 });
 
-export const getReviews = () => async (dispatch) => {
-    const response = await fetch(`/api/reviews`);
-    if (response.ok) {
-        const reviews = await response.json();
-        dispatch(load(reviews));
-        return reviews;
-    };
-};
+// export const getReviews = () => async (dispatch) => {
+//     const response = await fetch(`/api/reviews`);
+//     if (response.ok) {
+//         const reviews = await response.json();
+//         dispatch(load(reviews));
+//         return reviews;
+//     };
+// };
 
 export const getReview = (id) => async (dispatch) => {
-    const response = await fetch(`/api/products/${id}/reviews`)
+    const response = await fetch(`/api/products/${id}/reviews`);
     if (response.ok) {
         const review = await response.json();
         dispatch(loadOne(review));
@@ -48,11 +48,11 @@ export const getReview = (id) => async (dispatch) => {
     };
 };
 
-export const addReview = (product_id, user_id, headline, body, rating) => async (dispatch) => {
-    const response = await fetch(`/api/products/${product_id}/reviews/new`, {
+export const addReview = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/products/${payload.product_id}/reviews/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product_id, user_id, headline, body, rating })
+        body: JSON.stringify(payload)
     });
     if (response.ok) {
         const review = await response.json();
@@ -65,10 +65,13 @@ export const deleteReview = (user, item) => async (dispatch) => {
     const response = await fetch(`/api/products/${item}/reviews/${user}/delete`, {
         method: "DELETE"
     });
+    console.log("thunk response ------>", response)
     if (response.ok) {
-        const review = await response.json();
-        dispatch(deleteOne(review));
-        return review;
+        console.log("------------")
+        const delReview = await response.json();
+        console.log("thunk review: ----> ", delReview)
+        dispatch(deleteOne(delReview));
+        return delReview;
     };
 };
 
@@ -90,13 +93,13 @@ const initialState = {};
 const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case GET_REVIEWS:
-            newState = {};
-            action.reviews.forEach(review => (newState[review.id] = review));
-            return newState;
+        // case GET_REVIEWS:
+        //     newState = {};
+        //     newState[action.review.id] = action.review;
+        //     return newState;
         case GET_ONE:
             newState = {};
-            newState[action.review.id] = action.review;
+            action.review.forEach(revieww => (newState[revieww.id] = revieww));
             return newState;
         case ADD_ONE:
             newState = {};
@@ -104,7 +107,7 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         case DELETE_ONE:
             newState = { ...state };
-            delete newState[action.review];
+            delete newState[action.delReview];
             return newState;
         case UPDATE_ONE:
             newState = { ...state, [action.review.user_id]: action.review }

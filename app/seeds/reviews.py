@@ -22,10 +22,26 @@ def seed_reviews():
         body="Can't survive without these! They're so useful",
         rating=4
         )
+    review4 = Review(
+        user_id=2,
+        product_id=1,
+        headline="batteries suck",
+        body="stop using batteries",
+        rating=1
+        )
+    review5 = Review(
+        user_id=3,
+        product_id=1,
+        headline="Love these!",
+        body="Great batteries",
+        rating=5
+        )
 
     db.session.add(review1)
     db.session.add(review2)
     db.session.add(review3)
+    db.session.add(review4)
+    db.session.add(review5)
 
     db.session.commit()
 

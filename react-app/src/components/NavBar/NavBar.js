@@ -14,7 +14,7 @@ const NavBar = () => {
 
   useEffect(() => {
     (async () => {
-      await dispatch(getCart(user?.id))
+      // await dispatch(getCart(user.id))
     })()
   }, [dispatch, user])
 

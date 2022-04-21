@@ -49,70 +49,78 @@ const SignUpForm = () => {
   }
 
   return (
-    <div>
-      <img alt='amazan_logo' src='https://media.discordapp.net/attachments/402059564910116875/963926759575810068/amazanlogo.png?width=1920&height=580'></img>
-      <div>
-        <p>Create account</p>
+    <div className='signup-container'>
+      <img className='signup-logo' alt='amazan_logo' src='https://media.discordapp.net/attachments/402059564910116875/963926759575810068/amazanlogo.png?width=1920&height=580'></img>
+      <div className='signup-form'>
+        <p className='signup-signintext'>Create account</p>
         <form onSubmit={onSignUp}>
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div>
-            <label>First name</label>
+          <div className='signup-inputcontainer'>
+            <label className='signup-text'>First name</label>
             <input
               type='text'
               name='first_name'
               onChange={updateFirstName}
               value={firstName}
+              className='signup-inputbox'
             ></input>
           </div>
-          <div>
-            <label>Last name</label>
+          <div className='signup-inputcontainer'>
+            <label className='signup-text'>Last name</label>
             <input
               type='text'
               name='last_name'
               onChange={updateLastName}
               value={lastName}
+              className='signup-inputbox'
             ></input>
           </div>
-          <div>
-            <label>Email</label>
+          <div className='signup-inputcontainer'>
+            <label className='signup-text'>Email</label>
             <input
               type='text'
               name='email'
               onChange={updateEmail}
               value={email}
+              className='signup-inputbox'
             ></input>
           </div>
-          <div>
-            <label>Password</label>
+          <div className='signup-inputcontainer'>
+            <label className='signup-text'>Password</label>
             <input
               type='password'
               name='password'
               placeholder='At least 6 characters'
               onChange={updatePassword}
               value={password}
+              className='signup-inputbox'
             ></input>
-            <p>Passwords must be at least 6 characters.</p>
+            <div className='signup-passwordconfirmtext'>
+              <p className='italicsi'>i</p>
+              <p className='signup-passwordreq'>Passwords must be at least 6 characters.</p>
+            </div>
           </div>
-          <div>
-            <label>Re-enter password</label>
+          <div className='signup-inputcontainer'>
+            <label className='signup-text'>Re-enter password</label>
             <input
               type='password'
               name='repeat_password'
               onChange={updateRepeatPassword}
               value={repeatPassword}
               required={true}
+              className='signup-inputbox'
             ></input>
           </div>
-          <button type='submit'>Sign Up</button>
+          <button className='signup-button signup-buttonprimary' type='submit'>Sign Up</button>
+          <div className='signup-tologin'>
+            <p className='signup-tologintext'>Already have an account?</p>
+            <a className='signup-tologinlink' href='/login'>Sign-in</a>
+          </div>
         </form>
-      </div>
-      <div className='signup-tologin'>
-        <p>Already have an account?</p>
-        <a href='/login'>Sign-in</a>
       </div>
     </div>
   );
