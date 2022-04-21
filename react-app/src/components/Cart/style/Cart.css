@@ -1,0 +1,14 @@
+.cart-page {
+    background-color: #EAEDED;
+    padding: 3% 1%;
+}
+
+.cart-container {
+    background-color: white;
+    margin-right: 15%;
+}
+
+.cart-shoppingcarttext {
+    margin: 0px;
+    font-size: 28px;
+}

@@ -1,0 +1,104 @@
+.cartitem-container {
+    display: flex;
+    height: 210px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cartitem-productinfocontainer {
+    width: 100%;
+}
+
+.cartitem-imagecontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+    margin-left: 2%;
+    height: 180px;
+    width: 180px;
+}
+
+.cartitem-image {
+    max-height: 100%;
+    max-width: 100% !important;
+}
+
+.cartitem-specificcontainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cartitem-productcontainer {
+    margin-top: 1%;
+    margin-left: 20px;
+}
+
+.cartitem-productname {
+    font-size: 18px;
+    margin: 0px;
+}
+
+.cartitem-instock {
+    color: #007600;
+    font-size: 12px;
+    margin: 7px 0px;
+}
+
+.cartitem-stockcontainer {
+    align-items: center;
+    display: flex;
+    margin: 10px 0px;
+}
+
+.cartitem-primelogo {
+    height: 15px;
+    margin: 1px 5px 0px 0px;
+}
+
+.cartitem-andtext {
+    font-size: 14px;
+    margin: 0px;
+    margin-right: 5px;
+}
+
+.cartitem-returntext {
+    color: #007185;
+    font-size: 14px;
+    margin: 0px;
+}
+
+.cartitem-buttoncontainer {
+    display: flex;
+    margin-top: 10px;
+}
+
+.cartitem-seperator {
+    display: inline-block;
+    margin: 1px 10px 0px 20px;
+    width: 1px;
+    background-color: #ddd;
+    line-height: 0;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.cartitem-deletebutton {
+    background-color: white;
+    border: none;
+    color: #007185;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.cartitem-pricecontainer {
+    margin: 1% 1% 0% 0%;
+    text-align: end;
+}
+
+.cartitem-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0px;
+}
+
+/* -------------- Edit Cart Item ------------------- */

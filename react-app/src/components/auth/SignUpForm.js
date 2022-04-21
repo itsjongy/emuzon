@@ -108,7 +108,7 @@ const SignUpForm = () => {
             <label className='signup-text'>Re-enter password</label>
             <input
               type='password'
-              name='repeat_password'
+              name='confirmpassword'
               onChange={updateRepeatPassword}
               value={repeatPassword}
               required={true}

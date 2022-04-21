@@ -15,8 +15,8 @@ const Reviews = ({ reviewInfo }) => {
     let addEditButton;
     if (reviewInfo.user_id) {
         addEditButton = (
-            <div className="review-add">
-                <NavLink to={`/products/${reviewInfo.product_id}/${reviewInfo.id}/edit-review`}>
+            <div >
+                <NavLink className="review-add" to={`/products/${reviewInfo.product_id}/${reviewInfo.id}/edit-review`}>
                     Edit review
                 </NavLink>
             </div>
@@ -29,6 +29,7 @@ const Reviews = ({ reviewInfo }) => {
         <div className="review-container">
             <div className="review-userbuttons">
                 {addEditButton}
+                <div className="review-seperator"></div>
                 <button
                     className="review-deletebutton"
                     onClick={handleDelete}
