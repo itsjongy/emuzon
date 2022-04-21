@@ -18,11 +18,11 @@ const NewReviewForm = () => {
 
     const validate = () => {
         const validateErrors = [];
-        if (!headline) validateErrors.push("Enter a headline.")
+        if (!headline) validateErrors.push("Enter a headline.");
         if (headline) {
             if (headline.length > 100) validateErrors.push('Headline is too long');
         };
-        if (!body) validateErrors.push('Please enter a description.')
+        if (!body) validateErrors.push('Please enter a description.');
     };
 
     const handleSubmit = async (e) => {
@@ -36,13 +36,14 @@ const NewReviewForm = () => {
                 headline,
                 body,
                 rating
-            }
+            };
             if (payload) {
-                dispatch(addReview(payload))
-                history.push(`/products/${productId}`)
-            }
+                setErrors(payload);
+                dispatch(addReview(payload));
+                history.push(`/products/${productId}`);
+            };
         };
-    }
+    };
 
     return (
         <form>

@@ -11,22 +11,18 @@ const Cart = () => {
     const cartItems = useSelector(state => Object.values(state.cart));
     const [loaded, setLoaded] = useState(false);
 
-    const isUser = () => {
-        if (!user) {
-            return (
-                <Redirect to="/login" />
-            )
-        } else {
-            dispatch(getCart(user?.id));
-            setLoaded(true);
-        }
-    }
-
     useEffect(() => {
         (async () => {
-            await isUser()
+            if (!user) {
+                return (
+                    <Redirect to="/login" />
+                )
+            } else {
+                dispatch(getCart(user?.id));
+                setLoaded(true);
+            }
         })();
-    }, []);
+    }, [dispatch, user]);
 
     const conversion = new Intl.NumberFormat("en-US", {
         style: "currency",
