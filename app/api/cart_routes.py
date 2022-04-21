@@ -34,7 +34,7 @@ def delete_cart_item(userId, id):
     return jsonify("Success")
 
 
-@cart_routes.route('/<int:userId>/cart/<int:id>/', methods=['PUT'])
+@cart_routes.route('/<int:userId>/cart/<int:id>', methods=['PUT'])
 def update_cart_item(userId, id):
     data = request.get_json()
     cart_item = Cart_item.query.filter(Cart_item.product_id == id, Cart_item.user_id == userId).first()

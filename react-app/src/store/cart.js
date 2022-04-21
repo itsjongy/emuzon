@@ -84,8 +84,10 @@ const cartReducer = (state = initialState, action) => {
             });
             return newState;
         case ADD_ONE:
-            newState = { ...state };
-            newState[action.cart.id] = action.cart;
+            newState = {
+                ...state,
+                [action.cart.Cart_item.product_id]: action.cart.Cart_item
+            };
             return newState;
         case DELETE:
             newState = { ...state };
