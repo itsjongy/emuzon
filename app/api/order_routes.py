@@ -91,10 +91,8 @@ def newOrderPayment(id):
 @order_routes.route('/<int:id>/new', methods=['PATCH'])
 def newOrder(id):
         oldOrder = Order.query.filter(Order.user_id == id).filter(Order.items == None).first()
-        print("-------> oldOrder:", oldOrder)
         if oldOrder:
             null = Order.query.filter(Order.user_id == id).filter(or_(Order.address == None, Order.credit_card == None)).all()
-            print("------> null:", null)
             if not null:
                 form = OrderForm()
                 form['csrf_token'].data = request.cookies['csrf_token']

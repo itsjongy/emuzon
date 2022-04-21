@@ -8,7 +8,6 @@ import './CartItem.css';
 const CartItem = ({ id: product_id, userId, product_img, name, price, total_rating, rating_length, quantity }) => {
     const dispatch = useDispatch();
 
-    console.log("name ---->", name)
     const deleteItem = () => {
         dispatch(deleteCart(userId, product_id));
     }

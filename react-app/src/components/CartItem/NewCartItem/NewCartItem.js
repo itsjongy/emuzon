@@ -5,9 +5,7 @@ import { addCart } from '../../../store/cart';
 
 function AddCart({ user, productId }) {
     const dispatch = useDispatch();
-    console.log("addcart user: ", user)
-    console.log("addcart productid: ", productId)
-    console.log("addCart thunk", addCart)
+   
     const addToCart = () => {
         dispatch(addCart(user?.id, productId));
     };
