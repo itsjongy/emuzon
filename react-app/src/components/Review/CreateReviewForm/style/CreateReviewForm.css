@@ -1,0 +1,105 @@
+.userrev-formcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.userrev-form {
+    margin: 0% 10%;
+    width: 732px;
+}
+
+.userrev-createtext {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.userrev-productinfo {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.userrev-productimg {
+    max-width: 62px;
+    max-height: 62px;
+    margin-right: 10px;
+}
+
+.userrev-overalltext {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.userrev-overallinfo {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.userrev-num {
+    margin: 0px 23.5% 0px 0%;
+}
+
+.userrev-scroll {
+    cursor: pointer;
+    width: 100%;
+}
+
+.userrev-headlinecont {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.userrev-headline {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.userrev-titleinput {
+    background-color: #fff;
+    height: 31px;
+    padding: 3px 7px;
+    line-height: normal;
+    border: 1px solid #888C8C;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+    outline: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.userrev-bodycont {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.userrev-body {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.userrev-descinput {
+    border: 1px solid #888C8C;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+    outline: 0;
+    background-color: #fff;
+    width: 100%;
+    padding: 5px 7px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.userrev-submit {
+    margin-top: 20px;
+    background: #FFD814;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    float: right;
+    padding: 7px 10px;
+    font-size: 13px;
+    cursor: pointer;
+}
