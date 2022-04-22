@@ -5,10 +5,12 @@ import { addReview } from "../../../store/review";
 import "./style/CreateReviewForm.css";
 
 const NewReviewForm = () => {
-    const user = useSelector(state => state.session.user)
+    const user = useSelector(state => state.session.user);
+    const product = useSelector(state => state.product);
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
+    console.log("reviewform product", product[productId])
 
     const [headline, setHeadline] = useState("");
     const [body, setBody] = useState("");
@@ -46,54 +48,62 @@ const NewReviewForm = () => {
     };
 
     return (
-        <form>
-            <div>
-                <p>Create review</p>
-                <ul>
-                    {validationErrors.map((error) => (
-                        <li key={error}>{error}</li>
-                    ))}
-                </ul>
+        <div className="userrev-formcontainer">
+            <form className="userrev-form">
                 <div>
-                    <p>Overall rating</p>
-                    <div className="review_ratings">
-                        {Array(5).fill().map((_, i) => (
-                            <span key={i}>{i + 1}</span>
+                    <p className="userrev-createtext">Create review</p>
+                    <ul>
+                        {validationErrors.map((error) => (
+                            <li key={error}>{error}</li>
                         ))}
+                    </ul>
+                    <div>
+                        <div className="userrev-productinfo">
+                            <img alt="product" className="userrev-productimg" src={product[productId]?.product_img}></img>
+                            <p style={{ fontSize: "14px" }}>{product[productId]?.name}</p>
+                        </div>
+                        <div className="userrev-overallinfo">
+                            <p className="userrev-overalltext">Overall rating</p>
+                            <div className="userrev-ratings">
+                                {Array(5).fill().map((_, i) => (
+                                    <span className="userrev-num" key={i}>{i + 1}</span>
+                                ))}
+                            </div>
+                            <input
+                                type="range"
+                                name="rating"
+                                placeholder="rating"
+                                min="1"
+                                max="5"
+                                onChange={(e) => setRating(e.target.value)}
+                                value={rating}
+                                className="userrev-scroll"
+                            ></input>
+                        </div>
                     </div>
-                    <input
-                        type="range"
-                        name="rating"
-                        placeholder="rating"
-                        min="1"
-                        max="5"
-                        onChange={(e) => setRating(e.target.value)}
-                        value={rating}
-                    ></input>
+                    <div className="userrev-headlinecont">
+                        <p className="userrev-headline">Add a headline</p>
+                        <input
+                            type="text"
+                            placeholder="What's most important to know?"
+                            onChange={(e) => setHeadline(e.target.value)}
+                            className="userrev-titleinput"
+                        ></input>
+                    </div>
+                    <div className="userrev-bodycont">
+                        <p className="userrev-body">Add a written review</p>
+                        <textarea
+                            placeholder="What did you like or dislike? What did you use this product for?"
+                            rows={10}
+                            columns={10}
+                            onChange={(e) => setBody(e.target.value)}
+                            className="userrev-descinput"
+                        />
+                    </div>
                 </div>
-                <div>
-                    <p>Add a headline</p>
-                    <input
-                        type="text"
-                        placeholder="What's most important to know?"
-                        onChange={(e) => setHeadline(e.target.value)}
-                        className="reviewform-titleinput"
-                    ></input>
-                </div>
-                <div>
-                    <p>Add a written review</p>
-                    <textarea
-                        placeholder="What did you like or dislike? What did you use this product for?"
-                        rows={10}
-                        columns={10}
-                        style={{ resize: "None" }}
-                        onChange={(e) => setBody(e.target.value)}
-                        className="reviewform-descinput"
-                    />
-                </div>
-            </div>
-            <button onClick={handleSubmit} type="submit" className="review-submit">Submit</button>
-        </form>
+                <button onClick={handleSubmit} type="submit" className="userrev-submit">Submit</button>
+            </form>
+        </div>
     )
 };
 
