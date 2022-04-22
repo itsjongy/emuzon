@@ -3,7 +3,6 @@ from .db import db
 class Review(db.Model):
     __tablename__ = "reviews"
 
-    id= db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), primary_key=True)
     headline = db.Column(db.String(100), nullable=False)
@@ -18,7 +17,6 @@ class Review(db.Model):
 
     def to_dict(self):
         return {
-            'id': self.id,
             'user_id': self.user_id,
             'user_first_name': self.user.first_name,
             'user_last_name': self.user.last_name,

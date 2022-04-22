@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: f9412f4dbc0a
+Revision ID: 747258bca0c3
 Revises: 
-Create Date: 2022-04-14 17:09:09.819086
+Create Date: 2022-04-22 06:45:15.109882
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'f9412f4dbc0a'
+revision = '747258bca0c3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -70,7 +70,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('reviews',
-    sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('product_id', sa.Integer(), nullable=False),
     sa.Column('headline', sa.String(length=100), nullable=False),
@@ -80,7 +79,7 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id', 'user_id', 'product_id')
+    sa.PrimaryKeyConstraint('user_id', 'product_id')
     )
     # ### end Alembic commands ###
 

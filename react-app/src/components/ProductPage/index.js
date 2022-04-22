@@ -23,9 +23,8 @@ const ProductPage = () => {
     }, [dispatch, productId]);
 
     const currentDate = () => {
-        let currentDay = new Date();
+        const currentDay = new Date();
         const options = { weekday: "long", month: "long", day: "numeric" };
-
         currentDay.setDate(currentDay.getDate() + 2);
         return currentDay.toLocaleDateString("en-US", options);
     }
