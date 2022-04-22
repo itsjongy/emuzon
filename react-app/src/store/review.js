@@ -48,8 +48,6 @@ export const addReview = (payload) => async (dispatch) => {
 };
 
 export const deleteReview = (user, item) => async (dispatch) => {
-    console.log("thunk user ----> ", user)
-    console.log("thunk item ----> ", item)
     await fetch(`/api/products/${item}/reviews/${user}/delete`, {
         method: "DELETE"
     });
@@ -84,8 +82,7 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         case DELETE_ONE:
             newState = { ...state };
-            delete newState[action.payload.review.id];
-            console.log("delete newstate ===>", newState)
+            delete newState[action.payload];
             return newState;
         case UPDATE_ONE:
             newState = { ...state, [action.review.user_id]: action.review }

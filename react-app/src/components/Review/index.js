@@ -1,15 +1,15 @@
 import { useDispatch } from "react-redux"
 import { NavLink } from "react-router-dom";
-import { deleteReview } from "../../store/review";
+import { deleteReview, getReview } from "../../store/review";
 import "./style/Review.css";
 
 const Reviews = ({ reviewInfo }) => {
     const dispatch = useDispatch();
-    console.log("reviewInfo----->", reviewInfo)
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        await dispatch(deleteReview(reviewInfo.user_id, reviewInfo.product_id, reviewInfo.id));
+        await dispatch(deleteReview(reviewInfo.user_id, reviewInfo.product_id));
+        await dispatch(getReview(reviewInfo.product_id))
     };
 
     let addEditButton;

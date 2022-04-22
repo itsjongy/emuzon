@@ -122,7 +122,6 @@ const ProductPage = () => {
                     {review?.reverse().map((userReview) => (
                         <div className="productpage-specificrevcontainer">
                             <div>
-                                {console.log("user in html ---->", userReview)}
                                 <div className="productpage-reviewuserinfo">
                                     <p className="productpage-reviewuser">{userReview.user_first_name} {userReview.user_last_name}</p>
                                 </div>

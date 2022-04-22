@@ -59,7 +59,7 @@ def editReview(id, userId):
         fetchReview.rating=form.data['rating']
         db.session.commit()
         return fetchReview.to_dict()
-    return 'Error'
+    return {'Message': f"Review {id} was deleted!"}
 
 
 # this one deletes review under a product
