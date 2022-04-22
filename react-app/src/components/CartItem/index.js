@@ -20,7 +20,9 @@ const CartItem = ({ id: product_id, userId, product_img, name, price, total_rati
             <div className='cartitem-productinfocontainer'>
                 <div className='cartitem-specificcontainer'>
                     <div className='cartitem-productcontainer'>
-                        <p className='cartitem-productname'>{name}</p>
+                        <Link to={`/products/${product_id}`}>
+                            <p className='cartitem-productname'>{name}</p>
+                        </Link>
                         <p className='cartitem-instock'>In Stock</p>
                         <div className='cartitem-stockcontainer'>
                             <img className='cartitem-primelogo' alt='prime' src='https://m.media-amazon.com/images/G/01/AmazonStores/prime.png'></img>

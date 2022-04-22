@@ -1,0 +1,15 @@
+.addcart-button {
+    cursor: pointer;
+    background: #FCD200;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    padding: 7px 0px;
+    width: 100%;
+}
+
+.addcart-button:hover {
+    background: #F7CA00;
+    border-color: #F2C200;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+}
