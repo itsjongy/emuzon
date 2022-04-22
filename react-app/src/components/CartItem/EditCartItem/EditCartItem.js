@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { editCart } from '../../../store/cart';
 import "../CartItem.css";
 
-
 function EditCartItem({ userId, product_id, quantity }) {
     const dispatch = useDispatch();
     const [itemCount, setItemCount] = useState(quantity);
@@ -30,15 +29,15 @@ function EditCartItem({ userId, product_id, quantity }) {
     }
 
     return (
-        <>
+        <div>
             <div>
                 {errors.map((error, ind) => (
-                    <div className="cartProduct__remove__error" key={ind}>{error}</div>
+                    <div className='cartproduct-error' key={ind}>{error}</div>
                 ))}
-                <div className="cartProduct__remove__container">
-                    <span className="cartProduct__remove__quantity">Qty: </span>
+                <div className="cartproduct-container">
+                    <span className="cartproduct-quantity">Qty: </span>
                     <input
-                        className="cartProduct__remove__input pointer"
+                        className="cartproduct-input"
                         type="number"
                         name="item_count"
                         required
@@ -49,7 +48,7 @@ function EditCartItem({ userId, product_id, quantity }) {
                     ></input>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

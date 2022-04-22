@@ -36,6 +36,7 @@
 .cartitem-productname {
     font-size: 18px;
     margin: 0px;
+    color: black;
 }
 
 .cartitem-instock {
@@ -98,7 +99,16 @@
 .cartitem-price {
     font-size: 18px;
     font-weight: bold;
-    margin: 0px;
+    margin: 0px 10px 0px 0px;
 }
 
 /* -------------- Edit Cart Item ------------------- */
+.cartproduct-quantity {
+    font-size: 14px;
+}
+
+.cartproduct-input:focus {
+    outline: none;
+    border: #e77600;
+    box-shadow: 0 0 3px 2px rgb(228 121 17 / 50%);
+}

@@ -10,8 +10,6 @@ const NewReviewForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
-    console.log("reviewform product", product[productId])
-
     const [headline, setHeadline] = useState("");
     const [body, setBody] = useState("");
     const [rating, setRating] = useState(1);
@@ -46,6 +44,10 @@ const NewReviewForm = () => {
             };
         };
     };
+
+    if (!product[productId]) {
+        history.push(`/products/${productId}`)
+    }
 
     return (
         <div className="userrev-formcontainer">
