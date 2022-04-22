@@ -9,7 +9,7 @@ const Reviews = ({ reviewInfo }) => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        dispatch(deleteReview(reviewInfo.user_id, reviewInfo.product_id));
+        await dispatch(deleteReview(reviewInfo.user_id, reviewInfo.product_id, reviewInfo.id));
     };
 
     let addEditButton;
