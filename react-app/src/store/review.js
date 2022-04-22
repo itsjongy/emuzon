@@ -1,14 +1,7 @@
-// const GET_REVIEWS = 'reviews/GET_REVIEWS';
 const GET_ONE = 'reviews/GET_ONE';
 const ADD_ONE = 'reviews/ADD_ONE';
 const DELETE_ONE = 'reviews/DELETE_ONE';
 const UPDATE_ONE = 'reviews/UPDATE_ONE';
-
-
-// const load = (reviews) => ({
-//     type: GET_REVIEWS,
-//     reviews
-// });
 
 const loadOne = (review) => ({
     type: GET_ONE,
@@ -20,24 +13,17 @@ const addOne = (review) => ({
     review
 });
 
-const deleteOne = (review) => ({
-    type: DELETE_ONE,
-    review
-});
+const deleteOne = (payload) => {
+    return {
+        type: DELETE_ONE,
+        payload
+    }
+}
 
 const updateOne = (review) => ({
     type: UPDATE_ONE,
     review
 });
-
-// export const getReviews = () => async (dispatch) => {
-//     const response = await fetch(`/api/reviews`);
-//     if (response.ok) {
-//         const reviews = await response.json();
-//         dispatch(load(reviews));
-//         return reviews;
-//     };
-// };
 
 export const getReview = (id) => async (dispatch) => {
     const response = await fetch(`/api/products/${id}/reviews`);
@@ -62,17 +48,10 @@ export const addReview = (payload) => async (dispatch) => {
 };
 
 export const deleteReview = (user, item) => async (dispatch) => {
-    const response = await fetch(`/api/products/${item}/reviews/${user}/delete`, {
+    await fetch(`/api/products/${item}/reviews/${user}/delete`, {
         method: "DELETE"
     });
-    console.log("thunk response ------>", response)
-    if (response.ok) {
-        console.log("------------")
-        const delReview = await response.json();
-        console.log("thunk review: ----> ", delReview)
-        dispatch(deleteOne(delReview));
-        return delReview;
-    };
+    return dispatch(deleteOne(user));
 };
 
 export const updateReview = (item, user, headline, body, rating) => async (dispatch) => {
@@ -93,10 +72,6 @@ const initialState = {};
 const reviewReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        // case GET_REVIEWS:
-        //     newState = {};
-        //     newState[action.review.id] = action.review;
-        //     return newState;
         case GET_ONE:
             newState = {};
             action.review.forEach(revieww => (newState[revieww.id] = revieww));
@@ -107,7 +82,7 @@ const reviewReducer = (state = initialState, action) => {
             return newState;
         case DELETE_ONE:
             newState = { ...state };
-            delete newState[action.delReview];
+            delete newState[action.payload];
             return newState;
         case UPDATE_ONE:
             newState = { ...state, [action.review.user_id]: action.review }

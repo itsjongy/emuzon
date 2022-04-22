@@ -59,14 +59,13 @@ def editReview(id, userId):
         fetchReview.rating=form.data['rating']
         db.session.commit()
         return fetchReview.to_dict()
-    return 'Error'
+    return {'Message': f"Review {id} was deleted!"}
 
 
 # this one deletes review under a product
 @product_routes.route('/<int:id>/reviews/<int:userId>/delete', methods=['DELETE'])
 def deleteReview(id, userId):
     review = Review.query.filter(Review.product_id == id, Review.user_id == userId).first()
-    reviewId = review.id
     db.session.delete(review)
     db.session.commit()
-    return reviewId
+    return 'Error'

@@ -34,56 +34,63 @@ const Cart = () => {
     }, 0.00);
 
     return (
-        <div className="cart-page">
-            <div className="cart-container">
-                {loaded && cartItems.length > 0 ?
-                    <div>
-                        <p className="cart-shoppingcarttext">Shopping Cart</p>
-                    </div>
-                    :
-                    <div></div>
-                }
-                {loaded ? [
-                    cartItems.length > 0 ? (
-                        cartItems.map((each) => (
-                            <div>
-                                <CartItem
-                                    key={each.product_id}
-                                    id={each.product_id}
-                                    product_img={each.product_info?.product_img}
-                                    name={each.product_info?.name}
-                                    price={each.product_info?.price}
-                                    total_rating={each.product_info?.average_rating_total}
-                                    rating_length={each.product_info?.average_rating_length}
-                                    quantity={each.quantity}
-                                    userId={user.id}
-                                />
-                            </div>
-                        ))
-                    ) : (
-                        <div>
-                            <h1>Your Amazon Cart is empty.</h1>
-                            <p>Your Shopping Cart lives to serve. Give it purpose — fill it with groceries, clothing, household supplies, electronics, and more.
-                                Continue shopping on the Amazon.com homepage, learn about today's deals, or visit your Wish List.</p>
+        <div className="cart-pagecontainer">
+            <div className="cart-page">
+                <div className="cart-container">
+                    {loaded && cartItems.length > 0 ?
+                        <div className="cart-textcontainer">
+                            <p className="cart-shoppingcarttext">Shopping Cart</p>
+                            <div className="cart-linebreak"></div>
                         </div>
-                    ),
-                ] : null}
-            </div>
-            <div>
+                        :
+                        <div></div>
+                    }
+                    {loaded ? [
+                        cartItems.length > 0 ? (
+                            cartItems.map((each) => (
+                                <div>
+                                    <CartItem
+                                        key={each.product_id}
+                                        id={each.product_id}
+                                        product_img={each.product_info?.product_img}
+                                        name={each.product_info?.name}
+                                        price={each.product_info?.price}
+                                        total_rating={each.product_info?.average_rating_total}
+                                        rating_length={each.product_info?.average_rating_length}
+                                        quantity={each.quantity}
+                                        userId={user.id}
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            <div className="cart-noitems">
+                                <h1>Your Amazon Cart is empty.</h1>
+                                <p className="cart-noitemstext">Your Shopping Cart lives to serve. Give it purpose — fill it with groceries, clothing, household supplies, electronics, and more.
+                                    Continue shopping on the Amazon.com homepage, learn about today's deals, or visit your Wish List.</p>
+                            </div>
+                        ),
+                    ] : null}
+                </div>
                 <div>
-                    <div>
-                        <p>
-                            Subtotal (
-                            {Object.keys(cartItems).reduce(function (previous, key) {
-                                return previous + cartItems[key].quantity;
-                            }, 0)}{" "}
-                            items):
-                        </p>
-                        <p>{conversion.format(subtotal)}</p>
-                    </div>
-                    {cartItems.length > 0 && <Link to="/confirm-order">
-                        <button>Proceed to checkout</button>
-                    </Link>}
+                    {loaded && cartItems.length > 0 ?
+                        <div className="cart-subtotalcontainer">
+                            <div className="cart-subtotal">
+                                <p className="cart-subtotaltext">
+                                    Subtotal (
+                                    {Object.keys(cartItems).reduce(function (previous, key) {
+                                        return previous + cartItems[key].quantity;
+                                    }, 0)}{" "}
+                                    items):
+                                </p>
+                                <p className="cart-subtotalnumber">{conversion.format(subtotal)}</p>
+                            </div>
+                            {cartItems.length > 0 && <Link to="/confirm-order">
+                                <button className="cart-checkoutbutton">Proceed to checkout</button>
+                            </Link>}
+                        </div>
+                        :
+                        <div></div>
+                    }
                 </div>
             </div>
         </div>
