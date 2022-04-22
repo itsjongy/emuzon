@@ -1,34 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { addReview } from "../../../store/review";
 import "./style/CreateReviewForm.css";
 
 const NewReviewForm = () => {
-    const user = useSelector(state => state.session.user);
-    const product = useSelector(state => state.product);
     const dispatch = useDispatch();
     const history = useHistory();
     const { productId } = useParams();
+    const product = useSelector(state => state.product);
+    const user = useSelector(state => state.session.user);
     const [headline, setHeadline] = useState("");
     const [body, setBody] = useState("");
     const [rating, setRating] = useState(1);
-    let [errors, setErrors] = useState([]);
-    const [validationErrors, setValidationErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
-    const validate = () => {
-        const validateErrors = [];
-        if (!headline) validateErrors.push("Enter a headline.");
-        if (headline) {
-            if (headline.length > 100) validateErrors.push('Headline is too long');
-        };
-        if (!body) validateErrors.push('Please enter a description.');
-    };
+    useEffect(() => {
+        let validerrors = [];
+        if (headline.length === 0) validerrors.push("Enter a headline.")
+        if (headline.length > 100) validerrors.push('Headline must be under 100 characters.');
+        if (body.length === 0) validerrors.push('Please enter a description.')
+        setErrors(validerrors);
+    }, [headline, body]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        errors = validate();
-        if (errors?.length) return setValidationErrors(errors);
+        if (errors.length) return;
         else {
             const payload = {
                 user_id: user.id,
@@ -38,7 +35,7 @@ const NewReviewForm = () => {
                 rating
             };
             if (payload) {
-                setErrors(payload);
+                setErrors([]);
                 dispatch(addReview(payload));
                 history.push(`/products/${productId}`);
             };
@@ -54,16 +51,16 @@ const NewReviewForm = () => {
             <form className="userrev-form">
                 <div>
                     <p className="userrev-createtext">Create review</p>
-                    <ul>
-                        {validationErrors.map((error) => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
                     <div>
                         <div className="userrev-productinfo">
                             <img alt="product" className="userrev-productimg" src={product[productId]?.product_img}></img>
                             <p style={{ fontSize: "14px" }}>{product[productId]?.name}</p>
                         </div>
+                        <ul>
+                            {errors?.map((error) => (
+                                <li key={error}>{error}</li>
+                            ))}
+                        </ul>
                         <div className="userrev-overallinfo">
                             <p className="userrev-overalltext">Overall rating</p>
                             <div className="userrev-ratings">
