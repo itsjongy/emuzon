@@ -16,7 +16,10 @@ const Reviews = ({ reviewInfo }) => {
     if (reviewInfo.user_id) {
         addEditButton = (
             <div >
-                <NavLink className="review-add" to={`/products/${reviewInfo.product_id}/${reviewInfo.id}/edit-review`}>
+                <NavLink
+                    className="review-add"
+                    to={`/products/${reviewInfo.product_id}/${reviewInfo.id}/edit-review`}
+                >
                     Edit review
                 </NavLink>
             </div>

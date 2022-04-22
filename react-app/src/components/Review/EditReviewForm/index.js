@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateReview } from "../../../store/review";
@@ -14,22 +14,20 @@ const EditReviewForm = () => {
     const [headline, setHeadline] = useState(review[reviewId]?.headline);
     const [body, setBody] = useState(review[reviewId]?.body);
     const [rating, setRating] = useState(review[reviewId]?.rating);
-    let [errors, setErrors] = useState([]);
-    const [validationErrors, setValidationErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
-    const validate = () => {
-        const validateErrors = [];
-        if (!headline) validateErrors.push("Enter a headline.")
-        if (headline) {
-            if (headline.length > 100) validateErrors.push('Headline is too long');
-        };
-        if (!body) validateErrors.push('Please enter a description.')
-    };
+    useEffect(() => {
+        let validerrors = [];
+        console.log("headline ---->", headline)
+        if (headline.length === 0) validerrors.push("Enter a headline.")
+        if (headline.length > 100) validerrors.push('Headline must be under 100 characters.');
+        if (body.length === 0) validerrors.push('Please enter a description.')
+        setErrors(validerrors);
+    }, [headline, body]);
 
     const handleEdit = async (e) => {
         e.preventDefault();
-        errors = validate();
-        if (errors?.length) return setValidationErrors(errors);
+        if (errors.length) return
         else {
             const payload = await dispatch(
                 updateReview(
@@ -40,7 +38,7 @@ const EditReviewForm = () => {
                     rating
                 ));
             if (payload) {
-                setErrors(payload);
+                setErrors([])
                 history.push(`/products/${productId}`)
             }
         }
@@ -55,16 +53,16 @@ const EditReviewForm = () => {
             <form className="userrev-form">
                 <div>
                     <p className="userrev-createtext">Create review</p>
-                    <ul>
-                        {validationErrors.map((error) => (
-                            <li key={error}>{error}</li>
-                        ))}
-                    </ul>
                     <div>
                         <div className="userrev-productinfo">
                             <img alt="product" className="userrev-productimg" src={product[productId]?.product_img}></img>
                             <p style={{ fontSize: "14px" }}>{product[productId]?.name}</p>
                         </div>
+                        <ul>
+                            {errors?.map((error) => (
+                                <li key={error}>{error}</li>
+                            ))}
+                        </ul>
                         <div className="userrev-overallinfo">
                             <p className="userrev-overalltext">Overall rating</p>
                             <div className="userrev-ratings">
