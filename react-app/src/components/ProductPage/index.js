@@ -35,6 +35,8 @@ const ProductPage = () => {
             return sum + value.rating;
         }, 0) / review?.length;
 
+    const reviewExists = review?.some((review) => review.user_id === user?.id);
+
     return (
         <div>
             <div className="productpage-categories">
@@ -109,9 +111,11 @@ const ProductPage = () => {
                         <h3>Review this product</h3>
                         <p className="productpage-createreviewtext">Share your thoughts with other customers</p>
                         <div className="productpage-createcontainer">
-                            {user ? (
-                                <NavLink className="productpage-createreviewbutton" to={`/products/${productId}/new-review`}>Write a customer review</NavLink>
-                            ) :
+                            {user ? [
+                                reviewExists ? null : (
+                                    <NavLink className="productpage-createreviewbutton" to={`/products/${productId}/new-review`}>Write a customer review</NavLink>
+                                ),
+                            ] :
                                 <a className="productpage-createreviewbutton" href="/login">Write a customer review</a>
                             }
                         </div>
