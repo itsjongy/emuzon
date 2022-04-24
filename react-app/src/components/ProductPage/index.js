@@ -122,39 +122,41 @@ const ProductPage = () => {
                 </div>
                 <div className="productpage-reviewcontainer">
                     <p className="productpage-allreviewtext">Reviews of the product</p>
-                    {review?.reverse().map((userReview) => (
-                        <div className="productpage-specificrevcontainer">
-                            <div>
-                                <div className="productpage-reviewuserinfo">
-                                    <p className="productpage-reviewuser">{userReview.user_first_name} {userReview.user_last_name}</p>
+                    <div>
+                        {review?.reverse().map((userReview) => (
+                            <div key={"" + userReview.id} className="productpage-specificrevcontainer">
+                                <div>
+                                    <div className="productpage-reviewuserinfo">
+                                        <p className="productpage-reviewuser">{userReview.user_first_name} {userReview.user_last_name}</p>
+                                    </div>
+                                    <div className="productpage-rating">
+                                        {Array(5).fill().map((_, i) => {
+                                            let currentRating = i + 1;
+                                            return (
+                                                <p key={i}>
+                                                    <i
+                                                        key={i}
+                                                        className={`fas fa-star ${currentRating <= userReview.rating
+                                                            ? `star-yellow`
+                                                            : `star-gray`
+                                                            }`}
+                                                    />
+                                                </p>
+                                            );
+                                        })}
+                                        <p className="productpage-reviewheadline">{userReview.headline}</p>
+                                    </div>
+                                    <p className="productpage-reviewdate">Reviewed on {userReview.updated_at}</p>
+                                    <p className="productpage-reviewbody">{userReview.body}</p>
+                                    {user && user.id === userReview.user_id &&
+                                        < Reviews
+                                            key={userReview.id}
+                                            reviewInfo={userReview}
+                                        />}
                                 </div>
-                                <div className="productpage-rating">
-                                    {Array(5).fill().map((_, i) => {
-                                        let currentRating = i + 1;
-                                        return (
-                                            <p key={i}>
-                                                <i
-                                                    key={i}
-                                                    className={`fas fa-star ${currentRating <= userReview.rating
-                                                        ? `star-yellow`
-                                                        : `star-gray`
-                                                        }`}
-                                                />
-                                            </p>
-                                        );
-                                    })}
-                                    <p className="productpage-reviewheadline">{userReview.headline}</p>
-                                </div>
-                                <p className="productpage-reviewdate">Reviewed on {userReview.updated_at}</p>
-                                <p className="productpage-reviewbody">{userReview.body}</p>
-                                {user && user.id === userReview.user_id &&
-                                    < Reviews
-                                        key={userReview.id}
-                                        reviewInfo={userReview}
-                                    />}
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </div >

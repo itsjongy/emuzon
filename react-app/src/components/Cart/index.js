@@ -45,31 +45,33 @@ const Cart = () => {
                         :
                         <div></div>
                     }
-                    {loaded ? [
-                        cartItems.length > 0 ? (
-                            cartItems.map((each) => (
-                                <div>
-                                    <CartItem
-                                        key={each.product_id}
-                                        id={each.product_id}
-                                        product_img={each.product_info?.product_img}
-                                        name={each.product_info?.name}
-                                        price={each.product_info?.price}
-                                        total_rating={each.product_info?.average_rating_total}
-                                        rating_length={each.product_info?.average_rating_length}
-                                        quantity={each.quantity}
-                                        userId={user.id}
-                                    />
+                    <div>
+                        {loaded ? [
+                            cartItems.length > 0 ? (
+                                cartItems.map((each) => (
+                                    <div className="hehe" key={"" + each.product_id}>
+                                        <CartItem
+                                            key={each.product_id}
+                                            id={each.product_id}
+                                            product_img={each.product_info?.product_img}
+                                            name={each.product_info?.name}
+                                            price={each.product_info?.price}
+                                            total_rating={each.product_info?.average_rating_total}
+                                            rating_length={each.product_info?.average_rating_length}
+                                            quantity={each.quantity}
+                                            userId={user.id}
+                                        />
+                                    </div>
+                                ))
+                            ) : (
+                                <div key="asd" className="cart-noitems">
+                                    <h1>Your Amazon Cart is empty.</h1>
+                                    <p className="cart-noitemstext">Your Shopping Cart lives to serve. Give it purpose — fill it with groceries, clothing, household supplies, electronics, and more.
+                                        Continue shopping on the Amazon.com homepage, learn about today's deals, or visit your Wish List.</p>
                                 </div>
-                            ))
-                        ) : (
-                            <div className="cart-noitems">
-                                <h1>Your Amazon Cart is empty.</h1>
-                                <p className="cart-noitemstext">Your Shopping Cart lives to serve. Give it purpose — fill it with groceries, clothing, household supplies, electronics, and more.
-                                    Continue shopping on the Amazon.com homepage, learn about today's deals, or visit your Wish List.</p>
-                            </div>
-                        ),
-                    ] : null}
+                            ),
+                        ] : null}
+                    </div>
                 </div>
                 <div>
                     {loaded && cartItems.length > 0 ?
