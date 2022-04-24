@@ -18,6 +18,18 @@ const NavBar = () => {
     })()
   }, [dispatch, user])
 
+  const links = {
+    linkedin: [
+      "https://www.linkedin.com/in/itsjongy/",
+      "https://cdn.discordapp.com/attachments/402059564910116875/967620105540337726/linkedin.png",
+    ],
+    github: [
+      "https://github.com/itsjongy",
+      "https://cdn.discordapp.com/attachments/402059564910116875/967622433500725298/GitHub-Mark-120px-plus.png",
+    ],
+  };
+
+
   const loggedUser = () => {
     if (user) {
       return (
@@ -25,6 +37,20 @@ const NavBar = () => {
           <Link className='nav-home-link' to='/' exact='true'>
             <img className='nav-logo' alt='nav-logo' src='https://cdn.discordapp.com/attachments/402059564910116875/963960642698616902/amazan.png'></img>
           </Link>
+          <div className="navbar-aboutmecontainer">
+            <div className="navbar-aboutme">
+              <div className='navbar-linkedin'>
+                <a href={links["linkedin"][0]}>
+                  <img className='aboutme-image' alt="linkedin" src={links["linkedin"][1]}></img>
+                </a>
+              </div>
+              <div>
+                <a href={links["github"][0]}>
+                  <img className='aboutme-image' alt="github" src={links["github"][1]}></img>
+                </a>
+              </div>
+            </div>
+          </div>
           <div>
             <p className='navbar-deliver-to'>Deliver to {user.first_name}</p>
           </div>

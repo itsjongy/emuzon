@@ -12,6 +12,23 @@
     max-height: 55px;
 }
 
+.aboutme-image {
+    height: 40px;
+}
+
+.navbar-aboutmecontainer {
+    margin-top: 20px;
+    height: 60px;
+}
+
+.navbar-aboutme {
+    display: flex;
+}
+
+.navbar-linkedin {
+    margin-right: 10px;
+}
+
 .navbar-deliver-to {
     font-size: 14px;
 }
