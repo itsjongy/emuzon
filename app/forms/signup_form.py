@@ -18,9 +18,15 @@ def password_length(form, field):
         raise ValidationError('Password is too short.')
 
 
+def valid_email(form, field):
+    email = field.data
+    if "@" not in email or "." not in email:
+        raise ValidationError("Email is not valid.")
+
+
 class SignUpForm(FlaskForm):
     first_name = StringField('first_name', validators=[DataRequired()])
     last_name = StringField('last_name', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired(), user_exists])
+    email = StringField('email', validators=[DataRequired(), valid_email, user_exists])
     password = StringField('password', validators=[DataRequired(), password_length, EqualTo('confirm_password', message='Passwords do not match.')])
     confirm_password = StringField('confirm_password', validators=[DataRequired()])
