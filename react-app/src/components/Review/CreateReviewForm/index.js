@@ -17,9 +17,9 @@ const NewReviewForm = () => {
 
     useEffect(() => {
         let validerrors = [];
-        if (headline.length === 0) validerrors.push("Enter a headline.")
+        if (headline.length === 0) validerrors.push("")
         if (headline.length > 100) validerrors.push('Headline must be under 100 characters.');
-        if (body.length === 0) validerrors.push('Please enter a description.')
+        if (body.length === 0) validerrors.push("")
         setErrors(validerrors);
     }, [headline, body]);
 
@@ -56,11 +56,11 @@ const NewReviewForm = () => {
                             <img alt="product" className="userrev-productimg" src={product[productId]?.product_img}></img>
                             <p style={{ fontSize: "14px" }}>{product[productId]?.name}</p>
                         </div>
-                        <ul>
+                        <div>
                             {errors?.map((error) => (
-                                <li key={error}>{error}</li>
+                                <div key={"" + error}>{error}</div>
                             ))}
-                        </ul>
+                        </div>
                         <div className="userrev-overallinfo">
                             <p className="userrev-overalltext">Overall rating</p>
                             <div className="userrev-ratings">
@@ -100,7 +100,7 @@ const NewReviewForm = () => {
                         />
                     </div>
                 </div>
-                <button onClick={handleSubmit} type="submit" className="userrev-submit">Submit</button>
+                <button onClick={handleSubmit} disabled={errors.length > 0} type="submit" className="userrev-submit">Submit</button>
             </form>
         </div>
     )
