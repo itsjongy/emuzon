@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import { ReviewProvider } from './context/ReviewContext';
+import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
 
@@ -12,7 +13,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ReviewProvider>
       <Provider store={store}>
-        <App />
+        <ModalProvider>
+          <App />
+        </ModalProvider>
       </Provider>
     </ReviewProvider>
   </React.StrictMode>,

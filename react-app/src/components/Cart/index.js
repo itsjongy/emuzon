@@ -84,7 +84,7 @@ const Cart = () => {
                                 </p>
                                 <p className="cart-subtotalnumber">{conversion.format(subtotal)}</p>
                             </div>
-                            {cartItems.length > 0 && <Link to="/confirm-order">
+                            {cartItems.length > 0 && <Link to="/checkout">
                                 <button className="cart-checkoutbutton">Proceed to checkout</button>
                             </Link>}
                         </div>

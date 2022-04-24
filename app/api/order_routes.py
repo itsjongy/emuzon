@@ -14,7 +14,7 @@ def orders():
     return {'orders': [order.to_dict() for order in orders]}
 
 
-# this route gets orders with user_meta
+# this route gets orders for user
 @order_routes.route('/<int:id>')
 def get_order(id):
     orders = Order.query.filter(Order.user_id == id).all()
@@ -40,7 +40,7 @@ def newOrderAddress(id):
             )
             db.session.add(order)
             db.session.commit()
-            return order.to_dict()
+            return {'new_address': order.to_dict()}
     elif request.method == 'PATCH':
         form = OrderForm()
         form['csrf_token'].data = request.cookies['csrf_token']
@@ -53,7 +53,7 @@ def newOrderAddress(id):
             oldOrder.order_first=form.data['order_first'],
             oldOrder.order_last=form.data['order_last'],
             db.session.commit()
-            return oldOrder.to_dict()
+            return {'edit_address': oldOrder.to_dict()}
     return "Failed to add or edit address"
 
 
@@ -73,7 +73,7 @@ def newOrderPayment(id):
             )
             db.session.add(order)
             db.session.commit()
-            return order.to_dict()
+            return {'new_payment': order.to_dict()}
     elif request.method == 'PATCH':
         form = OrderForm()
         form['csrf_token'].data = request.cookies['csrf_token']
@@ -83,7 +83,7 @@ def newOrderPayment(id):
             oldOrder.expiration_date=form.data['expiration_date'],
             oldOrder.cvc=form.data['cvc'],
             db.session.commit()
-            return oldOrder.to_dict()
+            return {'edit_payment': oldOrder.to_dict()}
     return "Failed to add or edit payment"
 
 
@@ -99,7 +99,7 @@ def newOrder(id):
                 if form.validate_on_submit():
                     oldOrder.items = form.data['items']
                     db.session.commit()
-                    return {'Added_Order': oldOrder.to_dict()}
+                    return {'new_order': oldOrder.to_dict()}
             else:
                 return {'User needs to fill out shipping or payment'}, 401
         else:
@@ -123,5 +123,5 @@ def newOrder(id):
                             )
                     db.session.add(order)
                     db.session.commit()
-                    return order.to_dict()
+                    return {'new_order': order.to_dict()}
             return {'User does not have a current order'}, 401
