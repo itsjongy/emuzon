@@ -57,8 +57,8 @@ const ProductPage = () => {
                                 {Array(5).fill().map((_, i) => {
                                     let currentRating = i + 1;
                                     return (
-                                        <p key={i}>
-                                            <i key={i} className={`fas fa-star ${currentRating <= avgRating ? `star-yellow` : `star-gray`}`}>
+                                        <p key={"" + i}>
+                                            <i className={`fas fa-star ${currentRating <= avgRating ? `star-yellow` : `star-gray`}`}>
                                             </i>
                                         </p>
                                     )
@@ -133,9 +133,8 @@ const ProductPage = () => {
                                         {Array(5).fill().map((_, i) => {
                                             let currentRating = i + 1;
                                             return (
-                                                <p key={i}>
+                                                <p key={"" + i}>
                                                     <i
-                                                        key={i}
                                                         className={`fas fa-star ${currentRating <= userReview.rating
                                                             ? `star-yellow`
                                                             : `star-gray`
