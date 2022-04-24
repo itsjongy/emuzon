@@ -1,3 +1,7 @@
 .logout-button {
     cursor: pointer;
+    padding: 5px;
+    background-color: #FCD200;
+    border-radius: 8px;
+    border: none;
 }

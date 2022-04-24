@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import { getCart } from "../../store/cart";
+import { deleteCart, getCart } from "../../store/cart";
 import CartItem from "../CartItem";
 import './style/Cart.css';
 
@@ -10,6 +10,13 @@ const Cart = () => {
     const user = useSelector(state => state.session.user);
     const cartItems = useSelector(state => Object.values(state.cart));
     const [loaded, setLoaded] = useState(false);
+
+    // delete and reformat later
+    const emptyCart = () => {
+        Object.values(cartItems).forEach((each) =>
+            dispatch(deleteCart(each.user_id, each.product_id))
+        );
+    }
 
     useEffect(() => {
         (async () => {
@@ -59,7 +66,7 @@ const Cart = () => {
                                             total_rating={each.product_info?.average_rating_total}
                                             rating_length={each.product_info?.average_rating_length}
                                             quantity={each.quantity}
-                                            userId={user.id}
+                                            userId={user?.id}
                                         />
                                     </div>
                                 ))
@@ -86,8 +93,8 @@ const Cart = () => {
                                 </p>
                                 <p className="cart-subtotalnumber">{conversion.format(subtotal)}</p>
                             </div>
-                            {cartItems.length > 0 && <Link to="/confirm-order">
-                                <button className="cart-checkoutbutton">Proceed to checkout</button>
+                            {cartItems.length > 0 && <Link to="/checkout">
+                                <button onClick={emptyCart} className="cart-checkoutbutton">Proceed to checkout</button>
                             </Link>}
                         </div>
                         :

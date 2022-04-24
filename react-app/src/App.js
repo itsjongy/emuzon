@@ -13,6 +13,7 @@ import ProductPage from './components/ProductPage';
 import NewReviewForm from './components/Review/CreateReviewForm';
 import EditReviewForm from './components/Review/EditReviewForm';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout/Checkout';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +45,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/checkout" exact={true}>
+          <Checkout />
         </ProtectedRoute>
         <ProtectedRoute path="/products/:productId/new-review" exact={true}>
           <NewReviewForm />

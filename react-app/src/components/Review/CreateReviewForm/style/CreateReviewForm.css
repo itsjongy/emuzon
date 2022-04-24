@@ -115,3 +115,7 @@
     font-size: 13px;
     cursor: pointer;
 }
+
+.userrev-submit:disabled {
+    cursor: not-allowed;
+}
