@@ -35,6 +35,12 @@
 
 .navbar-hello {
     font-size: 14px;
+    /* margin-bottom: 0px; */
+    color: white;
+}
+
+.navbar-hellologgedout {
+    font-size: 14px;
     margin-bottom: 0px;
     color: white;
 }
