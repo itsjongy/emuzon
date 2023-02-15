@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, amazan_project
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Cart_item(db.Model):
     __tablename__ = "cart_items"
@@ -7,8 +7,8 @@ class Cart_item(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id= db.Column(db.Integer, primary_key=True, autoincrement=True)
-    product_id = db.Column(db.Integer, db.ForeignKey(amazan_project('products.id')), primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(amazan_project('users.id')), primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False, default=0)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())

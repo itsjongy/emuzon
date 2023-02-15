@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, amazan_project
+from .db import db
 from .user import User
 from .cart_item import Cart_item
 from .order import Order

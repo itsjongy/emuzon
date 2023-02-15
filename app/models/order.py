@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, amazan_project
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.dialects.postgresql import JSON
 
 class Order(db.Model):
@@ -8,7 +8,7 @@ class Order(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id= db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(amazan_project('users.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     items = db.Column(JSON)
     address = db.Column(db.String(255))
     city = db.Column(db.String(30))

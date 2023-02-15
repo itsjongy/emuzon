@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, amazan_project
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Review(db.Model):
     __tablename__ = "reviews"
@@ -7,8 +7,8 @@ class Review(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id= db.Column(db.Integer, primary_key=True, autoincrement=True)
-    user_id = db.Column(db.Integer, db.ForeignKey(amazan_project('users.id')), primary_key=True)
-    product_id = db.Column(db.Integer, db.ForeignKey(amazan_project('products.id')), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('products.id')), primary_key=True)
     headline = db.Column(db.String(100), nullable=False)
     body = db.Column(db.Text, nullable=False)
     rating = db.Column(db.Integer, nullable=False, default=1)
