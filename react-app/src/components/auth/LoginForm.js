@@ -32,7 +32,7 @@ const LoginForm = () => {
   }
 
   const demoLogin = async () => {
-    await dispatch(login("demo@aa.io", "password"));
+    await dispatch(login("demoo@aa.io", "password"));
   }
 
   return (
