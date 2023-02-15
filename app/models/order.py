@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA, amazan_project
 from sqlalchemy.dialects.postgresql import JSON
 
 class Order(db.Model):
