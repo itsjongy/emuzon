@@ -24,7 +24,7 @@ const NavBar = () => {
       const data = await dispatch(getProducts());
       setCategories(Object.values(data).map(each => each.category))
     })();
-  }, []);
+  }, [dispatch]);
 
   const links = {
     linkedin: [
