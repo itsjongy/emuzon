@@ -14,6 +14,7 @@ import NewReviewForm from './components/Review/CreateReviewForm';
 import EditReviewForm from './components/Review/EditReviewForm';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout/Checkout';
+import Category from './components/Category/Category';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -58,11 +59,13 @@ function App() {
         <Route path="/products/:productId" exact={true}>
           <ProductPage />
         </Route>
+        <Route path="/products/category/:category" exact={true}>
+          <Category />
+        </Route>
         <Route path="/cart" exact={true}>
           <Cart />
         </Route>
         <Route path='/' exact={true} >
-          {/* <h1>hi</h1> */}
           <SplashPage />
         </Route>
       </Switch>

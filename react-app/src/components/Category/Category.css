@@ -1,0 +1,8 @@
+.category-container {
+    margin: 5% 0%;
+}
+
+.category-boxes {
+    display: flex;
+    justify-content: space-around;
+}

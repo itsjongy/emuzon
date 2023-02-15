@@ -6,9 +6,9 @@
 }
 
 .splash-img {
-    width: 1600px;
-    max-height: 842.50px;
-    margin-bottom: -450px;
+    width: 1500px;
+    max-height: 600px;
+    margin-bottom: -350px;
     z-index: -1;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 99%)
 }
