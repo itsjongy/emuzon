@@ -2,7 +2,7 @@
 
 Amazan is a clone of [Amazon](https://www.amazon.com).
 <br/>
-Access to the live site: [Amazan](https://itsamazan.herokuapp.com/)
+Access to the live site: [Amazan](https://amazan.onrender.com/)
 
 ## Index
 | [Feature List](https://github.com/itsjongy/amazan/wiki/Features) | [Database Scheme](https://github.com/itsjongy/amazan/wiki/Database-Schema) | [User Stories](https://github.com/itsjongy/amazan/wiki/User-Stories) | [Wireframes](https://github.com/itsjongy/amazan/wiki/Wireframe) |
