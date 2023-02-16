@@ -4,7 +4,7 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        first_name='Demo', last_name='Demo', email='demooo@aa.io', password='password')
+        first_name='Demo', last_name='Demo', email='demo@aa.io', password='password')
     jason = User(
         first_name='Jason', last_name='Li', email='jasonli@aa.io', password='password')
     sharon = User(
@@ -14,11 +14,10 @@ def seed_users():
     chris = User(
         first_name='Chris', last_name='Tsang', email='christs@aa.io', password='password')
 
-    db.session.add(demo)
-    db.session.add(jason)
-    db.session.add(sharon)
-    db.session.add(paul)
-    db.session.add(chris)
+    for user in [demo, jason, sharon, paul, chris]:
+        existing_user = User.query.filter_by(email=user.email).first()
+        if existing_user is None:
+            db.session.add(user)
 
     db.session.commit()
 

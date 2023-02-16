@@ -1,10 +1,10 @@
-from app.models.db import db, environment, SCHEMA
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .products import seed_products, undo_products
 from .orders import seed_orders, undo_orders
 from .cart_items import seed_cart_items, undo_cart_items
 from .reviews import seed_reviews, undo_reviews
+from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -20,19 +20,19 @@ def seed():
         # Add a truncate command here for every table that will be seeded.
         db.session.commit()
     seed_users()
+    # Add other seed functions here
     seed_products()
     seed_cart_items()
     seed_reviews()
     seed_orders()
-    # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    # Add other undo functions here
     undo_products()
     undo_cart_items()
     undo_reviews()
     undo_orders()
-    # Add other undo functions here

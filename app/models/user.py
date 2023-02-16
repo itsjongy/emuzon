@@ -18,7 +18,6 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
     orders = db.relationship('Order', back_populates="users", cascade="all, delete")
-
     products = db.relationship('Cart_item', back_populates="user", cascade="all, delete")
     products_reviews = db.relationship('Review', back_populates="user", cascade="all, delete")
 
