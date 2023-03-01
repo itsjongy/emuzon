@@ -39,7 +39,7 @@ const LoginForm = () => {
     <div className='login-page'>
       <div className='login-container'>
         <Link to='/' exact='true'>
-          <img className='login-logo' alt='amazan_logo' src='https://media.discordapp.net/attachments/402059564910116875/963926759575810068/amazanlogo.png?width=1920&height=580'></img>
+          <img className='login-logo' alt='amazan_logo' src='https://cdn.discordapp.com/attachments/913736037220642847/1080314287224008794/amazanlogo.png'></img>
         </Link>
         <div className='login-form'>
           <p className='login-signintext'>Sign-in</p>
