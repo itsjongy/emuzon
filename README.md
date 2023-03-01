@@ -1,8 +1,8 @@
 # Amazan
 
-Amazan is a clone of [Amazon](https://www.amazon.com).
+Emuzon is a clone of [Amazon](https://www.amazon.com).
 <br/>
-Access to the live site: [Amazan](https://amazan.onrender.com/)
+Access to the live site: [Emuzon](https://emuzon.onrender.com/)
 
 ## Index
 | [Feature List](https://github.com/itsjongy/amazan/wiki/Features) | [Database Scheme](https://github.com/itsjongy/amazan/wiki/Database-Schema) | [User Stories](https://github.com/itsjongy/amazan/wiki/User-Stories) | [Wireframes](https://github.com/itsjongy/amazan/wiki/Wireframe) |
@@ -89,7 +89,7 @@ src="https://camo.githubusercontent.com/f7b8dd3ec5e0959272f5015575d66b6b6231329b
     ```bash
     npm start
     ```
-  
+
 # Helpful commands
 
 | Command              | Purpose                                                                                                                                      |
@@ -101,7 +101,7 @@ src="https://camo.githubusercontent.com/f7b8dd3ec5e0959272f5015575d66b6b6231329b
 | `flask seed all`     | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details                |
 
 </details>
-   
+
 ## Features
 Users will be allowed to browse through the products and the product page without an account. However, in order to access the full features of Amazan, users must login or sign up with an account.
   - If you do not want to make an account, feel free to test the site using the demo login.
@@ -109,7 +109,7 @@ Users will be allowed to browse through the products and the product page withou
 Logged in users can perform following actions:
   - Write/edit/delete reviews under a product.
   - Add items into cart, edit the amount of items in the cart, and remove items in the cart.
-   
+
 ## Upcoming features
 This is a project that I want to continue working on and improve over time so I'll be committed to adding more features in the future.
 ### To-do:

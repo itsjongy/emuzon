@@ -2,7 +2,7 @@ from app.models import db, Product
 
 def seed_products():
     product1 = Product(
-        name='Amazan Basics 4 Pack 9 Volt Performance All-Purpose Alkaline Batteries, 5-Year Shelf Life',
+        name='Emuzon Basics 4 Pack 9 Volt Performance All-Purpose Alkaline Batteries, 5-Year Shelf Life',
         description="4-pack of 9-volt alkaline batteries for reliable performance across a wide range of devices",
         price="11.81",
         category="Electronics",
@@ -44,7 +44,7 @@ def seed_products():
         product_img="https://m.media-amazon.com/images/I/71ZiZd8jSrL._AC_SX466_.jpg"
         )
     product7 = Product(
-        name='Amazan Essentials Men Long-Sleeve Soft Touch Cardigan Sweater',
+        name='Emuzon Essentials Men Long-Sleeve Soft Touch Cardigan Sweater',
         description="Comfortable and versatile, this sweater is perfect on its own or as a layer under a blazer or jacket",
         price="32.80",
         category="Fashion",

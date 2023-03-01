@@ -43,7 +43,7 @@ const NavBar = () => {
         <nav>
           <div className='navbar-container-logged'>
             <Link className='nav-home-link' to='/' exact='true'>
-              <img className='nav-logo' alt='nav-logo' src='https://cdn.discordapp.com/attachments/402059564910116875/963960642698616902/amazan.png'></img>
+              <img className='nav-logo' alt='nav-logo' src='https://cdn.discordapp.com/attachments/913736037220642847/1080320482181652481/emuzonprime.png'></img>
             </Link>
             <div className="navbar-aboutmecontainer">
               <div className="navbar-aboutme">

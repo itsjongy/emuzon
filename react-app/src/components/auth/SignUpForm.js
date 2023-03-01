@@ -48,7 +48,7 @@ const SignUpForm = () => {
 
   return (
     <div className='signup-container'>
-      <img className='signup-logo' alt='amazan_logo' src='https://cdn.discordapp.com/attachments/913736037220642847/1080314287224008794/amazanlogo.png'></img>
+      <img className='signup-logo' alt='emuzon_logo' src='https://cdn.discordapp.com/attachments/913736037220642847/1080314287224008794/amazanlogo.png'></img>
       <div className='signup-form'>
         <p className='signup-signintext'>Create account</p>
         <form onSubmit={onSignUp}>
