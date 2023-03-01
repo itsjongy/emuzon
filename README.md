@@ -1,11 +1,11 @@
-# Amazan
+# Emuzon
 
 Emuzon is a clone of [Amazon](https://www.amazon.com).
 <br/>
 Access to the live site: [Emuzon](https://emuzon.onrender.com/)
 
 ## Index
-| [Feature List](https://github.com/itsjongy/amazan/wiki/Features) | [Database Scheme](https://github.com/itsjongy/amazan/wiki/Database-Schema) | [User Stories](https://github.com/itsjongy/amazan/wiki/User-Stories) | [Wireframes](https://github.com/itsjongy/amazan/wiki/Wireframe) |
+| [Feature List](https://github.com/itsjongy/emuzon/wiki/Features) | [Database Scheme](https://github.com/itsjongy/emuzon/wiki/Database-Schema) | [User Stories](https://github.com/itsjongy/emuzon/wiki/User-Stories) | [Wireframes](https://github.com/itsjongy/emuzon/wiki/Wireframe) |
 
 ## Technologies Used
 <div>
@@ -31,7 +31,7 @@ src="https://camo.githubusercontent.com/f7b8dd3ec5e0959272f5015575d66b6b6231329b
 1. Clone this repo.
 
    ```bash
-   git clone git@github.com:itsjongy/amazan.git
+   git clone git@github.com:itsjongy/emuzon.git
    ```
 
 2. Install dependencies from the root directory and update the contents of your requirements.txt file to match your Pipfile.lock
